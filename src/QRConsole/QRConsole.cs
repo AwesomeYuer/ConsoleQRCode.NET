@@ -16,10 +16,12 @@ public class QRConsole
             Format = BarcodeFormat.QR_CODE
             , Options = new QrCodeEncodingOptions
                                 {
-                                    Width = 33
-                                    , Height = 33
+                                    Width = 10
+                                    , Height = 10
                                     , Margin = 1
-                                }
+                                   // , QrCompact = true
+                                    , CharacterSet = "utf-8"
+            }
         };
 
         var image = writer.WriteAsImageSharp<Rgba32>(text);
