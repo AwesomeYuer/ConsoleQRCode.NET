@@ -1,12 +1,2 @@
-﻿
-
-namespace QRConsole.SampleApp
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            QRConsole.Output("Hello, World!");
-        }
-    }
-}
+﻿using Microshaoft;
+QRConsole.Output("Thanks for Open Source and https://www.cnblogs.com/stulzq/p/14282461.html");
