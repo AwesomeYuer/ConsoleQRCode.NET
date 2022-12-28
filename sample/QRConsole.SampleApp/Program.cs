@@ -6,7 +6,7 @@ var s =
 满屏荒唐言
 一把辛酸泪
 都言作者痴
-谁知比特位
+谁解比特位
 ~ Duang ~
 """;
 QRConsole.Output(s);
