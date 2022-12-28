@@ -7,11 +7,16 @@ using ZXing.QrCode;
 
 public class QRConsole
 {
-    public static void Output(string text)
+    public static void Output
+                            (
+                                string data
+                                , ConsoleColor darkColor = ConsoleColor.Black
+                                , ConsoleColor lightColor = ConsoleColor.White
+                                , int thresholdDarkLightColor = 200
+                                , string chars = "囍"
+                            )
     {
-        const int threshold = 180;
-
-        var writer = new ZXing.ImageSharp.BarcodeWriter<Rgba32>
+        var writer = new BarcodeWriter<Rgba32>
         {
             Format = BarcodeFormat.QR_CODE
             , Options = new QrCodeEncodingOptions
@@ -24,46 +29,26 @@ public class QRConsole
             }
         };
 
-        var image = writer.WriteAsImageSharp<Rgba32>(text);
-
-        int[,] points = new int[image.Width, image.Height];
-
+        using var image = writer.WriteAsImageSharp<Rgba32>(data);
+        
         for (var i = 0; i < image.Width; i++)
         {
             for (var j = 0; j < image.Height; j++)
             {
                 //获取该像素点的RGB的颜色
                 var color = image[i,j];
-                if (color.B <= threshold)
+                if (color.B > thresholdDarkLightColor)
                 {
-                    points[i, j] = 1;
+                    Console.BackgroundColor = darkColor;
+                    Console.ForegroundColor = darkColor;
                 }
                 else
                 {
-                    points[i, j] = 0;
+                    Console.BackgroundColor = lightColor;
+                    Console.ForegroundColor = lightColor;
                 }
-            }
-        }
-            
-        for (var i = 0; i < image.Width; i++)
-        {
-            for (var j = 0; j < image.Height; j++)
-            {
-                //获取该像素点的RGB的颜色
-                if (points[i, j] == 0)
-                {
-                    Console.BackgroundColor = ConsoleColor.Black;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.Write("  ");
-                    Console.ResetColor();
-                }
-                else
-                {
-                    Console.BackgroundColor = ConsoleColor.White;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("  ");
-                    Console.ResetColor();
-                }
+                Console.Write(chars);
+                Console.ResetColor();
             }
             Console.Write("\n");
         }
