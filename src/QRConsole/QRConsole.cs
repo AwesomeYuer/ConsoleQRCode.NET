@@ -13,7 +13,7 @@ public class QRConsole
                                 , ConsoleColor darkColor = ConsoleColor.Black
                                 , ConsoleColor lightColor = ConsoleColor.White
                                 , int thresholdDarkLightColor = 200
-                                , string chars = "囍"
+                                , string outputChars = "囍"
                             )
     {
         var writer = new BarcodeWriter<Rgba32>
@@ -47,7 +47,7 @@ public class QRConsole
                     Console.BackgroundColor = lightColor;
                     Console.ForegroundColor = lightColor;
                 }
-                Console.Write(chars);
+                Console.Write(outputChars);
                 Console.ResetColor();
             }
             Console.Write("\n");
