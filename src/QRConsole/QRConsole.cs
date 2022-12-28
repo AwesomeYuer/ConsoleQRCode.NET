@@ -36,7 +36,7 @@ public class QRConsole
             for (var j = 0; j < image.Height; j++)
             {
                 //获取该像素点的RGB的颜色
-                var color = image[i,j];
+                var color = image[i, j];
                 if (color.B > thresholdDarkLightColor)
                 {
                     Console.BackgroundColor = darkColor;
