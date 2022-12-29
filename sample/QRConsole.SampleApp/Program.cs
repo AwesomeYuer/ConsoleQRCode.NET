@@ -3,7 +3,7 @@ using System;
 
 QRConsole.Output("https://www.cnblogs.com/stulzq/p/14282461.html?Thanks");
 
-Console.WriteLine();
+Console.WriteLine("☯㊖㍿㊎㊍㊌㊋㊏㊐㊊㊚㊛卍卐Ψ㊛囍㊒㊖Φ♀♂♠♣♥❤♠♣♥❤☰☲☱☴☵☶☳☷❤♂♀★☆☯✡※卍卐✸✹✺∞");
 Console.WriteLine();
 
 var s =

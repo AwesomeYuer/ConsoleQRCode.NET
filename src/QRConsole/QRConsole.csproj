@@ -3,12 +3,13 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <Authors>stulzq(Zhiqiang Li)</Authors>
+    <Authors>stulzq(Zhiqiang Li)(Original)</Authors>
     <Description>Print QR code on the console.</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="SixLabors.ImageSharp" Version="2.1.3" />
+    <!--<PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />-->
     <PackageReference Include="ZXing.Net.Bindings.ImageSharp.V2" Version="0.16.14" />
   </ItemGroup>
 
