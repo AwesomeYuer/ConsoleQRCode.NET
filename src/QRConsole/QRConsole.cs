@@ -29,18 +29,18 @@ public class QRConsole
                                 , ConsoleColor lightColor           = ConsoleColor.White
                                 , int thresholdOfDarkLightColor     = 200
 
-                                , string outputChars                = "囍"
+                                , string outputChars                = "卍"
                             )
     {
         static ErrorCorrectionLevel ToErrorCorrectionLevel(string errorCorrectionLevel) =>
         errorCorrectionLevel.ToUpper()
         switch
         {
-            "L" => ErrorCorrectionLevel.L
-            , "M" => ErrorCorrectionLevel.M
-            , "Q" => ErrorCorrectionLevel.Q
-            , "H" => ErrorCorrectionLevel.H
-            , _ => throw new ArgumentOutOfRangeException
+              "L"   => ErrorCorrectionLevel.L
+            , "M"   => ErrorCorrectionLevel.M
+            , "Q"   => ErrorCorrectionLevel.Q
+            , "H"   => ErrorCorrectionLevel.H
+            , _     => throw new ArgumentOutOfRangeException
                                             (
                                                 nameof(errorCorrectionLevel)
                                                 , $"Not expected {nameof(ErrorCorrectionLevel)} value: {errorCorrectionLevel}"
@@ -86,6 +86,7 @@ public class QRConsole
                 Console.Write(outputChars);
                 Console.ResetColor();
             }
+            //Console.ResetColor();
             Console.Write("\n");
         }
     }
