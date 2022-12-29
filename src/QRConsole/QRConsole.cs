@@ -11,20 +11,25 @@ public class QRConsole
     public static void Output
                             (
                                 string data
-                                , string errorCorrectionLevel   = "M"
-                                , string characterSet           = "utf-8"
-                                , bool disableECI               = false
-                                , bool qrCompact                = false
-                                , bool gs1Format                = false
-                                , bool pureBarcode              = false
-                                , int? qrVersion                = null
-                                , int width                     = 10
-                                , int height                    = 10
-                                , int margin                    = 1
-                                , ConsoleColor darkColor        = ConsoleColor.Black
-                                , ConsoleColor lightColor       = ConsoleColor.White
-                                , int thresholdOfDarkLightColor   = 200
-                                , string outputChars            = "囍"
+                        
+                                , string errorCorrectionLevel       = "M"
+                                , string characterSet               = "utf-8"
+
+                                , bool qrCompact                    = false
+                                , bool pureBarcode                  = false
+                                , int? qrVersion                    = null
+                                , bool disableECI                   = false
+                                , bool gs1Format                    = false
+
+                                , int width                         = 10
+                                , int height                        = 10
+                                , int margin                        = 1
+
+                                , ConsoleColor darkColor            = ConsoleColor.Black
+                                , ConsoleColor lightColor           = ConsoleColor.White
+                                , int thresholdOfDarkLightColor     = 200
+
+                                , string outputChars                = "囍"
                             )
     {
         static ErrorCorrectionLevel ToErrorCorrectionLevel(string errorCorrectionLevel) =>
