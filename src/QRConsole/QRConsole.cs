@@ -4,6 +4,7 @@ using System;
 using SixLabors.ImageSharp.PixelFormats;
 using ZXing;
 using ZXing.QrCode;
+using ZXing.QrCode.Internal;
 
 public class QRConsole
 {
@@ -13,9 +14,26 @@ public class QRConsole
                                 , ConsoleColor darkColor = ConsoleColor.Black
                                 , ConsoleColor lightColor = ConsoleColor.White
                                 , int thresholdDarkLightColor = 200
+                                , string errorCorrectionLevel = "H"
+                                , string characterSet = "utf-8"
                                 , string outputChars = "囍"
                             )
     {
+        static ErrorCorrectionLevel ToErrorCorrectionLevel(string errorCorrectionLevel) =>
+        errorCorrectionLevel.ToUpper()
+        switch
+        {
+            "L" => ErrorCorrectionLevel.L
+            , "M" => ErrorCorrectionLevel.M
+            , "Q" => ErrorCorrectionLevel.Q
+            , "H" => ErrorCorrectionLevel.H
+            , _ => throw new ArgumentOutOfRangeException
+                                            (
+                                                nameof(errorCorrectionLevel)
+                                                , $"Not expected {nameof(ErrorCorrectionLevel)} value: {errorCorrectionLevel}"
+                                            )
+        };
+
         var writer = new BarcodeWriter<Rgba32>
         {
             Format = BarcodeFormat.QR_CODE
@@ -23,10 +41,11 @@ public class QRConsole
                                 {
                                     Width = 10
                                     , Height = 10
+                                    , ErrorCorrection = ToErrorCorrectionLevel(errorCorrectionLevel)
                                     , Margin = 1
                                    // , QrCompact = true
                                     , CharacterSet = "utf-8"
-            }
+                                }
         };
 
         using var image = writer.WriteAsImageSharp<Rgba32>(data);

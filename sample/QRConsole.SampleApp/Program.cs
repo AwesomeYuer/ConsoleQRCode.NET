@@ -8,5 +8,6 @@ var s =
 都言作者痴
 谁解比特位
 ~ Duang ~
+囍
 """;
 QRConsole.Output(s);
