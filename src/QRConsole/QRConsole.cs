@@ -1,10 +1,8 @@
 ﻿namespace Microshaoft;
 
-using System;
-using SixLabors.ImageSharp.Formats.Gif;
 using SixLabors.ImageSharp.PixelFormats;
+using System;
 using ZXing;
-using ZXing.Datamatrix.Internal;
 using ZXing.QrCode;
 using ZXing.QrCode.Internal;
 
@@ -20,9 +18,12 @@ public class QRConsole
                                 , bool gs1Format                = false
                                 , bool pureBarcode              = false
                                 , int? qrVersion                = null
+                                , int width                     = 10
+                                , int height                    = 10
+                                , int margin                    = 1
                                 , ConsoleColor darkColor        = ConsoleColor.Black
                                 , ConsoleColor lightColor       = ConsoleColor.White
-                                , int thresholdDarkLightColor   = 200
+                                , int thresholdOfDarkLightColor   = 200
                                 , string outputChars            = "囍"
                             )
     {
@@ -46,11 +47,11 @@ public class QRConsole
             Format = BarcodeFormat.QR_CODE
             , Options = new QrCodeEncodingOptions
                                 {
-                                    Width               = 10
-                                    , Height            = 10
+                                    Width               = width
+                                    , Height            = height
                                     , ErrorCorrection   = ToErrorCorrectionLevel(errorCorrectionLevel)
                                     , Margin            = 1
-                                    , CharacterSet      = "utf-8"
+                                    , CharacterSet      = characterSet
                                     , DisableECI        = disableECI
                                     , QrCompact         = qrCompact
                                     , GS1Format         = gs1Format
@@ -67,7 +68,7 @@ public class QRConsole
             {
                 //获取该像素点的RGB的颜色
                 var color = image[i, j];
-                if (color.B > thresholdDarkLightColor)
+                if (color.B > thresholdOfDarkLightColor)
                 {
                     Console.BackgroundColor = darkColor;
                     Console.ForegroundColor = darkColor;
