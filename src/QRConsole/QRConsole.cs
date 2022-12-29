@@ -1,8 +1,10 @@
 ﻿namespace Microshaoft;
 
 using System;
+using SixLabors.ImageSharp.Formats.Gif;
 using SixLabors.ImageSharp.PixelFormats;
 using ZXing;
+using ZXing.Datamatrix.Internal;
 using ZXing.QrCode;
 using ZXing.QrCode.Internal;
 
@@ -11,12 +13,17 @@ public class QRConsole
     public static void Output
                             (
                                 string data
-                                , ConsoleColor darkColor = ConsoleColor.Black
-                                , ConsoleColor lightColor = ConsoleColor.White
-                                , int thresholdDarkLightColor = 200
-                                , string errorCorrectionLevel = "H"
-                                , string characterSet = "utf-8"
-                                , string outputChars = "囍"
+                                , string errorCorrectionLevel   = "M"
+                                , string characterSet           = "utf-8"
+                                , bool disableECI               = false
+                                , bool qrCompact                = false
+                                , bool gs1Format                = false
+                                , bool pureBarcode              = false
+                                , int? qrVersion                = null
+                                , ConsoleColor darkColor        = ConsoleColor.Black
+                                , ConsoleColor lightColor       = ConsoleColor.White
+                                , int thresholdDarkLightColor   = 200
+                                , string outputChars            = "囍"
                             )
     {
         static ErrorCorrectionLevel ToErrorCorrectionLevel(string errorCorrectionLevel) =>
@@ -39,12 +46,16 @@ public class QRConsole
             Format = BarcodeFormat.QR_CODE
             , Options = new QrCodeEncodingOptions
                                 {
-                                    Width = 10
-                                    , Height = 10
-                                    , ErrorCorrection = ToErrorCorrectionLevel(errorCorrectionLevel)
-                                    , Margin = 1
-                                   // , QrCompact = true
-                                    , CharacterSet = "utf-8"
+                                    Width               = 10
+                                    , Height            = 10
+                                    , ErrorCorrection   = ToErrorCorrectionLevel(errorCorrectionLevel)
+                                    , Margin            = 1
+                                    , CharacterSet      = "utf-8"
+                                    , DisableECI        = disableECI
+                                    , QrCompact         = qrCompact
+                                    , GS1Format         = gs1Format
+                                    , PureBarcode       = pureBarcode
+                                    , QrVersion         = qrVersion
                                 }
         };
 
