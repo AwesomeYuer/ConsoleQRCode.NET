@@ -3,7 +3,7 @@
 using SixLabors.ImageSharp.PixelFormats;
 using System;
 //using System.Runtime.InteropServices;
-using System.Text;
+//using System.Text;
 using ZXing;
 using ZXing.QrCode;
 using ZXing.QrCode.Internal;
@@ -71,10 +71,10 @@ public class QRConsole
                                 }
         };
 
-        if (!_isEncodingRegisterProvider)
-        {
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-        }
+        //if (!_isEncodingRegisterProvider)
+        //{
+        //    Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        //}
 
         //int charBytesLength = Encoding.GetEncoding("GBK").GetBytes(new char[] { outputChar }).Length;
 
