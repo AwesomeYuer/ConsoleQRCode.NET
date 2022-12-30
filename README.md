@@ -6,7 +6,7 @@ Support Linux/Windows
 ![sample](assets/Windows.png)
 ![sample](assets/WSL.Ubuntu.png)
 
-```csharp
+```c#
 using Microshaoft;
 using System;
 
@@ -36,3 +36,9 @@ System.Console.Out.WriteQRCodeLine
                     , outputPostionTop              : null!                 //控制台二维码输出纵向位置
             );
 ```
+
+Thanks for Open Source:
+
+https://github.com/stulzq/QRConsole
+
+https://www.cnblogs.com/stulzq/p/14282461.html
