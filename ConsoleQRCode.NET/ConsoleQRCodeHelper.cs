@@ -12,168 +12,29 @@ public static class ConsoleQRCodeHelper
 {
     private static readonly object _locker = new ();
 
-    public static void WriteQRCodeLine
-                            (
-                                this TextWriter @this
-                                , string data
-
-                                , int width                         = 10
-                                , int height                        = 10
-                                , int margin                        = 1
-
-                                , string characterSet               = nameof(Encoding.UTF8)
-                                
-                                , ConsoleColor darkColor            = ConsoleColor.Black
-                                , ConsoleColor lightColor           = ConsoleColor.White
-
-                                , char placeholderChar              = '囍'
-
-                                , int? outputPostionLeft            = null!
-                                , int? outputPostionTop             = null!
-                            )
-    {
-        WriteQRCode
-            (
-                @this
-                , data
-
-                , width
-                , height
-                , margin
-
-                , characterSet
-
-                , darkColor
-                , lightColor
-
-                , placeholderChar
-
-                , outputPostionLeft
-                , outputPostionTop
-            );
-        Console.WriteLine();
-    }
-
     public static void WriteQRCode
-                            (
-                                this TextWriter @this
-                                , string data
+                    (
+                        this TextWriter @this
+                        , string data
 
-                                , int width                         = 10
-                                , int height                        = 10
-                                , int margin                        = 1
+                        , IDictionary
+                                <EncodeHintType, object>
+                                        qrEncodeHints
 
-                                , string characterSet               = nameof(Encoding.UTF8)
+                        , int width = 10
+                        , int height = 10
 
-                                , ConsoleColor darkColor            = ConsoleColor.Black
-                                , ConsoleColor lightColor           = ConsoleColor.White
+                        , ConsoleColor darkColor = ConsoleColor.Black
+                        , ConsoleColor lightColor = ConsoleColor.White
 
-                                , char placeholderChar              = '囍'
+                        , char placeholderChar = '囍'
 
-                                , int? outputPostionLeft            = null!
-                                , int? outputPostionTop             = null!
-                            )
+                        , int? outputPostionLeft = null!
+                        , int? outputPostionTop = null!
+                    )
     {
-        
-        Dictionary<EncodeHintType, object> qrEncodeHints = new ()
-        {
-              { EncodeHintType.CHARACTER_SET            , characterSet                  }
-            //, { EncodeHintType.ERROR_CORRECTION         , errorCorrectionLevel          }
-            //, { EncodeHintType.QR_COMPACT               , qrCompact                     }
-            //, { EncodeHintType.PURE_BARCODE             , pureBarcode                   }
-            //, { EncodeHintType.QR_VERSION               , qrVersion                     }
-            //, { EncodeHintType.DISABLE_ECI              , disableECI                    }
-            //, { EncodeHintType.GS1_FORMAT               , gs1Format                     }
-            , { EncodeHintType.MARGIN                   , margin                        }
-            //, { EncodeHintType.WIDTH                    , width                         }
-            //, { EncodeHintType.HEIGHT                   , height                        }
-        };
-        WriteQRCode
-            (
-                @this
-
-                , data
-
-                , qrEncodeHints
-
-                , width
-                , height
-
-                , darkColor
-                , lightColor
-
-                , placeholderChar
-
-                , outputPostionLeft
-                , outputPostionTop
-            );
-    }
-
-    
-    public static void WriteQRCodeLine
-                        (
-                            this TextWriter @this
-                            , string data
-
-                            , IDictionary
-                                    <EncodeHintType, object>
-                                            qrEncodeHints
-
-                            , int width                         = 10
-                            , int height                        = 10
-
-                            , ConsoleColor darkColor            = ConsoleColor.Black
-                            , ConsoleColor lightColor           = ConsoleColor.White
-
-                            , char placeholderChar              = '囍'
-
-                            , int? outputPostionLeft            = null!
-                            , int? outputPostionTop             = null!
-                        )
-    {
-        WriteQRCode
-            (
-                @this
-
-                , data
-
-                , qrEncodeHints
-                
-                , width
-                , height
-
-                , darkColor
-                , lightColor
-                
-                , placeholderChar
-                
-                , outputPostionLeft
-                , outputPostionTop
-            );
-        Console.WriteLine();
-    }
-    public static void WriteQRCode
-                        (
-                            this TextWriter @this
-                            , string data
-
-                            , IDictionary
-                                    <EncodeHintType, object>
-                                            qrEncodeHints
-
-                            , int width                         = 10
-                            , int height                        = 10
-
-                            , ConsoleColor darkColor            = ConsoleColor.Black
-                            , ConsoleColor lightColor           = ConsoleColor.White
-
-                            , char placeholderChar              = '囍'
-
-                            , int? outputPostionLeft            = null!
-                            , int? outputPostionTop             = null!
-                        )
-    { 
         _ = @this;
+
         // Wide Char Detection
         var isWideChar = false;
         lock (_locker)
@@ -247,5 +108,146 @@ public static class ConsoleQRCodeHelper
             //Console.ResetColor();
             Console.Write("\n");
         }
+    }
+
+    public static void WriteQRCode
+                        (
+                            this TextWriter @this
+                            , string data
+
+                            , int width = 10
+                            , int height = 10
+                            , int margin = 1
+
+                            , string characterSet = nameof(Encoding.UTF8)
+
+                            , ConsoleColor darkColor = ConsoleColor.Black
+                            , ConsoleColor lightColor = ConsoleColor.White
+
+                            , char placeholderChar = '囍'
+
+                            , int? outputPostionLeft = null!
+                            , int? outputPostionTop = null!
+                        )
+    {
+
+        Dictionary<EncodeHintType, object> qrEncodeHints = new()
+        {
+              { EncodeHintType.CHARACTER_SET            , characterSet                  }
+            //, { EncodeHintType.ERROR_CORRECTION         , errorCorrectionLevel          }
+            //, { EncodeHintType.QR_COMPACT               , qrCompact                     }
+            //, { EncodeHintType.PURE_BARCODE             , pureBarcode                   }
+            //, { EncodeHintType.QR_VERSION               , qrVersion                     }
+            //, { EncodeHintType.DISABLE_ECI              , disableECI                    }
+            //, { EncodeHintType.GS1_FORMAT               , gs1Format                     }
+            , { EncodeHintType.MARGIN                   , margin                        }
+            //, { EncodeHintType.WIDTH                    , width                         }
+            //, { EncodeHintType.HEIGHT                   , height                        }
+        };
+
+        WriteQRCode
+            (
+                @this
+
+                , data
+
+                , qrEncodeHints
+
+                , width
+                , height
+
+                , darkColor
+                , lightColor
+
+                , placeholderChar
+
+                , outputPostionLeft
+                , outputPostionTop
+            );
+    }
+
+    public static void WriteQRCodeLine
+                            (
+                                this TextWriter @this
+                                , string data
+
+                                , int width                         = 10
+                                , int height                        = 10
+                                , int margin                        = 1
+
+                                , string characterSet               = nameof(Encoding.UTF8)
+                                
+                                , ConsoleColor darkColor            = ConsoleColor.Black
+                                , ConsoleColor lightColor           = ConsoleColor.White
+
+                                , char placeholderChar              = '囍'
+
+                                , int? outputPostionLeft            = null!
+                                , int? outputPostionTop             = null!
+                            )
+    {
+        WriteQRCode
+            (
+                @this
+                , data
+
+                , width
+                , height
+                , margin
+
+                , characterSet
+
+                , darkColor
+                , lightColor
+
+                , placeholderChar
+
+                , outputPostionLeft
+                , outputPostionTop
+            );
+        Console.WriteLine();
+    }
+   
+    public static void WriteQRCodeLine
+                        (
+                            this TextWriter @this
+                            , string data
+
+                            , IDictionary
+                                    <EncodeHintType, object>
+                                            qrEncodeHints
+
+                            , int width                         = 10
+                            , int height                        = 10
+
+                            , ConsoleColor darkColor            = ConsoleColor.Black
+                            , ConsoleColor lightColor           = ConsoleColor.White
+
+                            , char placeholderChar              = '囍'
+
+                            , int? outputPostionLeft            = null!
+                            , int? outputPostionTop             = null!
+                        )
+    {
+        WriteQRCode
+            (
+                @this
+
+                , data
+
+                , qrEncodeHints
+                
+                , width
+                , height
+
+                , darkColor
+                , lightColor
+                
+                , placeholderChar
+                
+                , outputPostionLeft
+                , outputPostionTop
+            );
+        Console.WriteLine();
     }
 }
