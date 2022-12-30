@@ -12,7 +12,7 @@ public static class ConsoleQRCodeHelper
 {
     private static readonly object _locker = new ();
 
-    public static void WriteQRCode
+    public static void PrintQRCode
                     (
                         this TextWriter @this
                         , string data
@@ -110,7 +110,7 @@ public static class ConsoleQRCodeHelper
         }
     }
 
-    public static void WriteQRCode
+    public static void PrintQRCode
                         (
                             this TextWriter @this
                             , string data
@@ -145,7 +145,7 @@ public static class ConsoleQRCodeHelper
             //, { EncodeHintType.HEIGHT                   , height                        }
         };
 
-        WriteQRCode
+        PrintQRCode
             (
                 @this
 
@@ -166,7 +166,7 @@ public static class ConsoleQRCodeHelper
             );
     }
 
-    public static void WriteQRCodeLine
+    public static void PrintQRCodeLine
                             (
                                 this TextWriter @this
                                 , string data
@@ -186,7 +186,7 @@ public static class ConsoleQRCodeHelper
                                 , int? outputPostionTop             = null!
                             )
     {
-        WriteQRCode
+        PrintQRCode
             (
                 @this
                 , data
@@ -208,7 +208,7 @@ public static class ConsoleQRCodeHelper
         Console.WriteLine();
     }
    
-    public static void WriteQRCodeLine
+    public static void PrintQRCodeLine
                         (
                             this TextWriter @this
                             , string data
@@ -229,7 +229,7 @@ public static class ConsoleQRCodeHelper
                             , int? outputPostionTop             = null!
                         )
     {
-        WriteQRCode
+        PrintQRCode
             (
                 @this
 

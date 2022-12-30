@@ -8,7 +8,7 @@ Console.WriteLine("======");
 Console.WriteLine("======\b \b");
 Console.WriteLine("======");
 
-System.Console.Out.WriteQRCodeLine
+System.Console.Out.PrintQRCodeLine
             (
                   data  : $@"AwesomeYuer于斯人也@Microshaoft
                              AwesomeYuer于斯人也@Microshaoft"        //待生成二维码原始数据
@@ -28,7 +28,7 @@ System.Console.Out.WriteQRCodeLine
                 , outputPostionTop      : null!                     //控制台二维码输出纵向位置
             );
 
-Console.Out.WriteQRCodeLine
+Console.Out.PrintQRCodeLine
                 (
                     data                    : "https://www.cnblogs.com/stulzq/p/14282461.html?Thanks"
                     , placeholderChar       : '♂' //㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
@@ -65,7 +65,7 @@ var s =
 谁解比特位
 ~ Duang ~
 """;
-Console.Out.WriteQRCodeLine
+Console.Out.PrintQRCodeLine
             (
                 s
                 , new Dictionary<EncodeHintType, object> ()
@@ -88,7 +88,7 @@ Console.Out.WriteQRCodeLine
             );
 
 
-Console.Out.WriteQRCodeLine
+Console.Out.PrintQRCodeLine
             (
                 $@"AwesomeYuer于斯人也" //待生成二维码原始数据
             );
