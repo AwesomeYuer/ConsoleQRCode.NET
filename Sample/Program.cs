@@ -2,8 +2,8 @@
 using System;
 
 Console.WriteLine("======");
+Console.WriteLine("======\b \b");
 Console.WriteLine("======");
-Console.WriteLine("======\b");
 
 System.Console.Out.WriteQRCodeLine
             (
