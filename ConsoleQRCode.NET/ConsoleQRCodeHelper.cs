@@ -189,11 +189,11 @@ public static class ConsoleQRCodeHelper
         }
 
         QRCodeWriter qrCodeWriter = new();
-        BitMatrix matrix;
+        BitMatrix bitMatrix;
 
         if (qrEncodeHints is null)
         {
-            matrix = qrCodeWriter
+            bitMatrix = qrCodeWriter
                                 .encode
                                     (
                                         data
@@ -204,7 +204,7 @@ public static class ConsoleQRCodeHelper
         }
         else
         {
-            matrix = qrCodeWriter
+            bitMatrix = qrCodeWriter
                                 .encode
                                     (
                                         data
@@ -219,15 +219,15 @@ public static class ConsoleQRCodeHelper
         {
             Console.CursorTop = outputPostionTop.Value;
         }
-        for (var i = 0; i < matrix.Width; i++)
+        for (var i = 0; i < bitMatrix.Width; i++)
         {
             if (outputPostionLeft is not null)
             {
                 Console.CursorLeft = outputPostionLeft.Value;
             }
-            for (var j = 0; j < matrix.Height; j++)
+            for (var j = 0; j < bitMatrix.Height; j++)
             {
-                if (!matrix[i, j])
+                if (!bitMatrix[i, j])
                 {
                     Console.BackgroundColor = darkColor;
                     Console.ForegroundColor = darkColor;
