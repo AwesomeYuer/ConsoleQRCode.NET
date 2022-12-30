@@ -74,47 +74,8 @@ public static class ConsoleQRCodeHelper
                                 , int? outputPostionTop             = null!
                             )
     {
-        _ = @this;
-        Output
-            (
-                  data
-
-                , width
-                , height
-                , margin
-
-                , characterSet
-
-                , darkColor
-                , lightColor
-
-                , placeholderChar
-
-                , outputPostionLeft
-                , outputPostionTop
-            );
-    }
-
-    public static void Output
-                            (
-                                string data
-
-                                , int width                         = 10
-                                , int height                        = 10
-                                , int margin                        = 1
-
-                                , string characterSet               = nameof(Encoding.UTF8)
-
-                                , ConsoleColor darkColor            = ConsoleColor.Black
-                                , ConsoleColor lightColor           = ConsoleColor.White
-
-                                , char placeholderChar              = '囍'
-
-                                , int? outputPostionLeft            = null!
-                                , int? outputPostionTop             = null!
-                            )
-    {
-        Dictionary<EncodeHintType, object> qrEncodeHints = new ()
+        
+        Dictionary<EncodeHintType, object> qrEncodeHints = new()
         {
               { EncodeHintType.CHARACTER_SET            , characterSet                  }
             //, { EncodeHintType.ERROR_CORRECTION         , errorCorrectionLevel          }
@@ -127,25 +88,28 @@ public static class ConsoleQRCodeHelper
             //, { EncodeHintType.WIDTH                    , width                         }
             //, { EncodeHintType.HEIGHT                   , height                        }
         };
-
-        Output
+        WriteQRCode
             (
-                data
+                @this
+
+                , data
 
                 , qrEncodeHints
-                
+
                 , width
                 , height
 
                 , darkColor
                 , lightColor
-                
+
                 , placeholderChar
-                
+
                 , outputPostionLeft
                 , outputPostionTop
             );
     }
+
+    
     public static void WriteQRCodeLine
                         (
                             this TextWriter @this
@@ -186,6 +150,7 @@ public static class ConsoleQRCodeHelper
                 , outputPostionLeft
                 , outputPostionTop
             );
+        Console.WriteLine();
     }
     public static void WriteQRCode
                         (
@@ -209,44 +174,6 @@ public static class ConsoleQRCodeHelper
                         )
     { 
         _ = @this;
-        Output
-            (
-                data
-                
-                , qrEncodeHints
-                
-                , width
-                , height
-
-                , darkColor
-                , lightColor
-
-                , placeholderChar
-
-                , outputPostionLeft
-                , outputPostionTop
-            );
-    }
-    public static void Output
-                            (
-                                string data
-
-                                , IDictionary
-                                        <EncodeHintType, object>
-                                                qrEncodeHints
-
-                                , int width                         = 10
-                                , int height                        = 10
-
-                                , ConsoleColor darkColor            = ConsoleColor.Black
-                                , ConsoleColor lightColor           = ConsoleColor.White
-
-                                , char placeholderChar              = '囍'
-
-                                , int? outputPostionLeft            = null!
-                                , int? outputPostionTop             = null!
-                            )
-    {
         // Wide Char Detection
         var isWideChar = false;
         lock (_locker)
@@ -261,7 +188,7 @@ public static class ConsoleQRCodeHelper
             Console.SetCursorPosition(left, top);
         }
 
-        QRCodeWriter qrCodeWriter = new ();
+        QRCodeWriter qrCodeWriter = new();
         BitMatrix matrix;
 
         if (qrEncodeHints is null)
