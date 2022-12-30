@@ -30,12 +30,12 @@ System.Console.Out.PrintQRCodeLine
                 , height                : 10                        //二维码图像生成高度
                 , margin                : 1                         //二维码图像生成边缘空白宽高度
 
-                , characterSet          : nameof(Encoding.UTF8)     //二维码字符集
+                , characterSet          : nameof(Encoding.UTF8)     //二维码字符集 支持中文不乱码
 
                 , darkColor             : ConsoleColor.White        //控制台二维码输出深颜色
                 , lightColor            : ConsoleColor.Red          //控制台二维码输出浅颜色
 
-                , placeholderChar       : '囍'                      //控制台二维码输出占位符 同时支持窄宽字符: !@# ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
+                , placeholderChar       : '囍'                      //控制台二维码输出占位符 同时支持宽或窄字符, 窄: !@# , 宽: ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
 
                 , outputPostionLeft     : 10                        //控制台二维码输出横向位置
                 , outputPostionTop      : null!                     //控制台二维码输出纵向位置
@@ -77,33 +77,6 @@ var s =
 都言作者痴
 谁解比特位
 ~ Duang ~
-""";
-Console.Out.PrintQRCodeLine
-            (
-                s
-                , new Dictionary<EncodeHintType, object> ()
-                    {
-                          { EncodeHintType.CHARACTER_SET            , nameof(Encoding.UTF8)                 }
-                        , { EncodeHintType.ERROR_CORRECTION         , "L"                                   }
-                        , { EncodeHintType.QR_COMPACT               , true                                  }
-                        , { EncodeHintType.PURE_BARCODE             , true                                  }
-                        //, { EncodeHintType.QR_VERSION               , 10                                    }
-                        //, { EncodeHintType.DISABLE_ECI              , true                                  }
-                        //, { EncodeHintType.GS1_FORMAT               , true                                  }
-                        , { EncodeHintType.MARGIN                   , 1                                     }
-                        //, { EncodeHintType.WIDTH                    , width                                 }
-                        //, { EncodeHintType.HEIGHT                   , height                                }
-                    }
-                , placeholderChar           : '$' //窄字符
-                , outputPostionLeft         : 20
-                , darkColor                 : ConsoleColor.Yellow
-                , lightColor                : ConsoleColor.DarkBlue
-            );
-
-Console.Out.PrintQRCodeLine
-            (
-                $@"AwesomeYuer于斯人也" //待生成二维码原始数据
-            );
 """;
 Console.Out.PrintQRCodeLine
             (
