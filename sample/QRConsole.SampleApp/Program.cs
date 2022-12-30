@@ -8,6 +8,7 @@ Console.WriteLine("======\b");
 Console.Out.WriteQRCodeLine
                 (
                     "https://www.cnblogs.com/stulzq/p/14282461.html?Thanks"
+                    , placeholderChar:      '♂' //㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
                     , outputPostionLeft:    100
                     , outputPostionTop:     10
                 );
