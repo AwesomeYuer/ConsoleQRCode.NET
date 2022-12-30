@@ -97,6 +97,11 @@ Console.Out.WriteQRCodeLine
                 , lightColor                : ConsoleColor.DarkBlue
             );
 
+
+Console.Out.WriteQRCodeLine
+            (
+                $@"AwesomeYuer于斯人也" //待生成二维码原始数据
+            );
 ```
 
 ## Tips:
