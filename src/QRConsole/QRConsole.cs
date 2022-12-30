@@ -1,17 +1,19 @@
 ﻿namespace Microshaoft;
 
+using Cyjb;
 using SixLabors.ImageSharp.PixelFormats;
 using System;
+using System.Text.RegularExpressions;
 //using System.Runtime.InteropServices;
 //using System.Text;
 using ZXing;
 using ZXing.QrCode;
 using ZXing.QrCode.Internal;
-
+using Null.ConsoleEx;
 public class QRConsole
 {
     //private static bool _isEncodingRegisterProvider = false;
-
+    
     public static void Output
                             (
                                 string data
@@ -33,7 +35,7 @@ public class QRConsole
                                 , ConsoleColor lightColor           = ConsoleColor.White
                                 , int thresholdOfDarkLightColor     = 200
 
-                                , string outputChars                = "囍"
+                                , char outputChar                   = '♂'//'与'
                             )
     {
         static ErrorCorrectionLevel ToErrorCorrectionLevel(string errorCorrectionLevel) =>
@@ -51,7 +53,7 @@ public class QRConsole
                                             )
         };
 
-
+        
 
         var writer = new BarcodeWriter<Rgba32>
         {
@@ -71,13 +73,8 @@ public class QRConsole
                                 }
         };
 
-        //if (!_isEncodingRegisterProvider)
-        //{
-        //    Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-        //}
-
-        //int charBytesLength = Encoding.GetEncoding("GBK").GetBytes(new char[] { outputChar }).Length;
-
+        var isWideDisplayChar = (CharUtil.Width(outputChar) > 1);
+        isWideDisplayChar = ConsoleExS.IsWideDisplayChar(outputChar);
         using var image = writer.WriteAsImageSharp<Rgba32>(data);
         
         for (var i = 0; i < image.Width; i++)
@@ -96,11 +93,12 @@ public class QRConsole
                     Console.BackgroundColor = lightColor;
                     Console.ForegroundColor = lightColor;
                 }
-                Console.Write(outputChars);
-                //if (charBytesLength < 2)
-                //{
-                //    Console.Write(outputChar);
-                //}
+
+                Console.Write(outputChar);
+                if (!isWideDisplayChar)
+                {
+                    Console.Write(outputChar);
+                }
                 Console.ResetColor();
             }
             //Console.ResetColor();
