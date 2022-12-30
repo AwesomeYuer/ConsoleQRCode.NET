@@ -12,7 +12,6 @@ https://www.cnblogs.com/stulzq/p/14282461.html
 ## Sample:
 ```c#
 using Microshaoft;
-using System;
 
 System.Console.Out.WriteQRCodeLine
             (
