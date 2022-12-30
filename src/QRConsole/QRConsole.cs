@@ -16,24 +16,27 @@ public static class QRConsole
                                 this TextWriter @this
                                 , string data
 
-                                , string errorCorrectionLevel = "M"
-                                , string characterSet = "utf-8"
+                                , string errorCorrectionLevel       = "M"
+                                , string characterSet               = "utf-8"
 
-                                , bool qrCompact = false
-                                , bool pureBarcode = false
-                                , int? qrVersion = null
-                                , bool disableECI = false
-                                , bool gs1Format = false
+                                , bool qrCompact                    = false
+                                , bool pureBarcode                  = false
+                                , int? qrVersion                    = null
+                                , bool disableECI                   = false
+                                , bool gs1Format                    = false
 
-                                , int width = 10
-                                , int height = 10
-                                , int margin = 1
+                                , int width                         = 10
+                                , int height                        = 10
+                                , int margin                        = 1
 
-                                , ConsoleColor darkColor = ConsoleColor.Black
-                                , ConsoleColor lightColor = ConsoleColor.White
-                                , int thresholdOfDarkLightColor = 200
+                                , ConsoleColor darkColor            = ConsoleColor.Black
+                                , ConsoleColor lightColor           = ConsoleColor.White
+                                , int thresholdOfDarkLightColor     = 200
 
-                                , char outputChar = '囍'
+                                , char outputChar                   = '!'
+
+                                , int? outputPostionLeft            = null!
+                                , int? outputPostionTop             = null!
                             )
     {
         WriteQRCode
@@ -59,6 +62,9 @@ public static class QRConsole
                 , thresholdOfDarkLightColor
 
                 , outputChar
+
+                , outputPostionLeft
+                , outputPostionTop
             );
         Console.WriteLine();
     }
@@ -68,24 +74,27 @@ public static class QRConsole
                                 this TextWriter @this
                                 , string data
 
-                                , string errorCorrectionLevel = "M"
-                                , string characterSet = "utf-8"
+                                , string errorCorrectionLevel       = "M"
+                                , string characterSet               = "utf-8"
 
-                                , bool qrCompact = false
-                                , bool pureBarcode = false
-                                , int? qrVersion = null
-                                , bool disableECI = false
-                                , bool gs1Format = false
+                                , bool qrCompact                    = false
+                                , bool pureBarcode                  = false
+                                , int? qrVersion                    = null
+                                , bool disableECI                   = false
+                                , bool gs1Format                    = false
 
-                                , int width = 10
-                                , int height = 10
-                                , int margin = 1
+                                , int width                         = 10
+                                , int height                        = 10
+                                , int margin                        = 1
 
-                                , ConsoleColor darkColor = ConsoleColor.Black
-                                , ConsoleColor lightColor = ConsoleColor.White
-                                , int thresholdOfDarkLightColor = 200
+                                , ConsoleColor darkColor            = ConsoleColor.Black
+                                , ConsoleColor lightColor           = ConsoleColor.White
+                                , int thresholdOfDarkLightColor     = 200
 
-                                , char outputChar = '囍'
+                                , char outputChar                   = '囍'
+
+                                , int? outputPostionLeft            = null!
+                                , int? outputPostionTop             = null!
                             )
     {
         _ = @this;
@@ -111,6 +120,9 @@ public static class QRConsole
                 , thresholdOfDarkLightColor
 
                 , outputChar
+
+                , outputPostionLeft
+                , outputPostionTop
             );
     }
 
@@ -136,6 +148,9 @@ public static class QRConsole
                                 , int thresholdOfDarkLightColor     = 200
 
                                 , char outputChar                   = '囍'
+
+                                , int? outputPostionLeft            = null!
+                                , int? outputPostionTop             = null!
                             )
     {
         var isWideDisplayChar = false;
@@ -146,7 +161,7 @@ public static class QRConsole
             isWideDisplayChar = ((Console.CursorLeft - left) > 1);
             while (Console.CursorLeft != left)
             {
-                Console.Write("\b");
+                Console.Write("\b \b");
             }
             Console.SetCursorPosition(left, top);
         }
@@ -186,8 +201,16 @@ public static class QRConsole
 
         using var image = writer.WriteAsImageSharp<Rgba32>(data);
 
+        if (outputPostionLeft is not null)
+        {
+            Console.CursorTop = outputPostionTop.Value;
+        }
         for (var i = 0; i < image.Width; i++)
         {
+            if (outputPostionLeft is not null)
+            {
+                Console.CursorLeft = outputPostionLeft.Value;
+            }
             for (var j = 0; j < image.Height; j++)
             {
                 //获取该像素点的RGB的颜色

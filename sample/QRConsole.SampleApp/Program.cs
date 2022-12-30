@@ -5,7 +5,12 @@ Console.WriteLine("======");
 Console.WriteLine("======");
 Console.WriteLine("======\b");
 
-Console.Out.WriteQRCodeLine("https://www.cnblogs.com/stulzq/p/14282461.html?Thanks");
+Console.Out.WriteQRCodeLine
+                (
+                    "https://www.cnblogs.com/stulzq/p/14282461.html?Thanks"
+                    , outputPostionLeft:    100
+                    , outputPostionTop:     10
+                );
 
 Console.WriteLine("㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨");
 Console.WriteLine();
