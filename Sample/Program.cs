@@ -14,7 +14,7 @@ System.Console.Out.WriteQRCodeLine
 
                     , qrCompact                     : true                  //二维码是否压缩
                     , pureBarcode                   : true                  //是否纯条码
-                    , qrVersion                     : 10                    //二维码版本
+                    , qrVersion                     : 1                     //二维码版本
                     , disableECI                    : true                  //是否禁用ECI编码段
                     , gs1Format                     : true                  //是否GS1格式
 
