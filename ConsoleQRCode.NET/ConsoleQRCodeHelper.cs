@@ -49,7 +49,7 @@ public static class ConsoleQRCodeHelper
             Console.SetCursorPosition(left, top);
         }
 
-        QRCodeWriter qrCodeWriter = new();
+        QRCodeWriter qrCodeWriter = new ();
         BitMatrix bitMatrix;
 
         if (qrEncodeHints is null)
