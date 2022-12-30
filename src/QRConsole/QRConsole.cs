@@ -9,8 +9,6 @@ using ZXing.QrCode.Internal;
 
 public static class QRConsole
 {
-    //private static bool _isEncodingRegisterProvider = false;
-
     private static readonly object _locker = new ();
 
     public static void WriteQRCodeLine
@@ -143,10 +141,14 @@ public static class QRConsole
         var isWideDisplayChar = false;
         lock (_locker)
         {
-            int startCursorPosition = Console.CursorLeft;
+            (int left, int top) = Console.GetCursorPosition();
             Console.Write(outputChar);
-            isWideDisplayChar = ((Console.CursorLeft - startCursorPosition) > 1);
-            Console.CursorLeft = startCursorPosition;
+            isWideDisplayChar = ((Console.CursorLeft - left) > 1);
+            while (Console.CursorLeft != left)
+            {
+                Console.Write("\b");
+            }
+            Console.SetCursorPosition(left, top);
         }
 
         static ErrorCorrectionLevel ToErrorCorrectionLevel(string errorCorrectionLevel) =>

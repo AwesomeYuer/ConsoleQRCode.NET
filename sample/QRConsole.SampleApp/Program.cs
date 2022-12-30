@@ -1,6 +1,10 @@
 ﻿using Microshaoft;
 using System;
 
+Console.WriteLine("======");
+Console.WriteLine("======");
+Console.WriteLine("======\b");
+
 Console.Out.WriteQRCodeLine("https://www.cnblogs.com/stulzq/p/14282461.html?Thanks");
 
 Console.WriteLine("㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨");
