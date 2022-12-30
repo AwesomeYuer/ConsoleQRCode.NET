@@ -16,15 +16,15 @@ System.Console.Out.PrintQRCodeLine
                 , 10                                            //outputPostionLeft:    控制台二维码输出横向位置
                 , null!                                         //outputPostionTop:     控制台二维码输出纵向位置
 
-                , 10                                            //width:                二维码图像生成宽度
-                , 10                                            //height:               二维码图像生成高度
+                , 10                                            //widthInPixel:         二维码图像生成宽度
+                , 10                                            //heightInPixel:        二维码图像生成高度
                 , 1                                             //margin:               二维码图像生成边缘空白宽高度
 
                 , ConsoleColor.White                            //darkColor:            控制台二维码输出深颜色
                 , ConsoleColor.Red                              //lightColor:           控制台二维码输出浅颜色
 
                 , nameof(Encoding.UTF8)                         //二维码字符集 支持中文不乱码
-                , '囍'                                           //控制台二维码输出占位符 同时支持宽或窄字符, 窄: !@# , 宽: ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
+                //, '囍'                                         //控制台二维码输出占位符 同时支持宽或窄字符, 窄: !@# , 宽: ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
             );
 
 Console.Out.PrintQRCodeLine
@@ -77,14 +77,14 @@ Console.Out.PrintQRCodeLine
                         //, { EncodeHintType.DISABLE_ECI              , true                                  }
                         //, { EncodeHintType.GS1_FORMAT               , true                                  }
                         , { EncodeHintType.MARGIN                   , 1                                     }
-                        //, { EncodeHintType.WIDTH                    , width                                 }
-                        //, { EncodeHintType.HEIGHT                   , height                                }
+                        //, { EncodeHintType.WIDTH                    , 15                                    }
+                        //, { EncodeHintType.HEIGHT                   , 15                                    }
                     }
                 
                 , 20                                                    //outputPostionLeft:    控制台二维码输出横向位置
                 , darkColor                 : ConsoleColor.Yellow
                 , lightColor                : ConsoleColor.DarkBlue
-                , placeholderChar: '$'                                  //控制台二维码输出占位符 窄字符 $
+                , placeholderChar           : '$'                       //控制台二维码输出占位符 窄字符 $
             );
 
 Console.Out.PrintQRCodeLine
