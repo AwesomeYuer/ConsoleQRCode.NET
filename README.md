@@ -1,4 +1,4 @@
-﻿# QR Code Console
+﻿# Console QR Code .NET
 Print QR Code to console.
 
 Support Linux/Windows
