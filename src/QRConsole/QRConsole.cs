@@ -184,8 +184,6 @@ public static class QRConsole
 
         using var image = writer.WriteAsImageSharp<Rgba32>(data);
 
-        
-
         for (var i = 0; i < image.Width; i++)
         {
             for (var j = 0; j < image.Height; j++)
