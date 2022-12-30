@@ -114,7 +114,7 @@ public static class ConsoleQRCodeHelper
                                 , int? outputPostionTop             = null!
                             )
     {
-        Dictionary<EncodeHintType, object> hints = new()
+        Dictionary<EncodeHintType, object> qrEncodeHints = new ()
         {
               { EncodeHintType.CHARACTER_SET            , characterSet                  }
             //, { EncodeHintType.ERROR_CORRECTION         , errorCorrectionLevel          }
@@ -131,7 +131,7 @@ public static class ConsoleQRCodeHelper
         Output
             (
                 data
-                , hints
+                , qrEncodeHints
                 , width
                 , height
 
@@ -150,8 +150,6 @@ public static class ConsoleQRCodeHelper
                             , IDictionary<EncodeHintType, object> hints
                             , int width = 10
                             , int height = 10
-
-                            
 
                             , ConsoleColor darkColor = ConsoleColor.Black
                             , ConsoleColor lightColor = ConsoleColor.White
@@ -219,12 +217,10 @@ public static class ConsoleQRCodeHelper
                             (
                                 string data
 
-                                , IDictionary<EncodeHintType, object> hints = null
+                                , IDictionary<EncodeHintType, object> qrEncodeHints = null
 
                                 , int width                 = 10
                                 , int height                = 10
-                                
-
 
                                 , ConsoleColor darkColor    = ConsoleColor.Black
                                 , ConsoleColor lightColor   = ConsoleColor.White
@@ -248,10 +244,11 @@ public static class ConsoleQRCodeHelper
             }
             Console.SetCursorPosition(left, top);
         }
+
         QRCodeWriter qrCodeWriter = new ();
         BitMatrix matrix;
 
-        if (hints is null)
+        if (qrEncodeHints is null)
         {
             matrix = qrCodeWriter
                                 .encode
@@ -271,7 +268,7 @@ public static class ConsoleQRCodeHelper
                                         , BarcodeFormat.QR_CODE
                                         , width
                                         , height
-                                        , hints
+                                        , qrEncodeHints
                                     );
         }
 
