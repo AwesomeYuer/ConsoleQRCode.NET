@@ -9,24 +9,7 @@ https://github.com/stulzq/QRConsole
 
 https://www.cnblogs.com/stulzq/p/14282461.html
 
-Tips:
-```c#
-// Wide Char Detection
-var isWideChar = false;
-lock (_locker)
-{
-    (int left, int top) = Console.GetCursorPosition();
-    Console.Write(placeholderChar);
-    isWideChar = ((Console.CursorLeft - left) > 1);
-    while (Console.CursorLeft != left)
-    {
-        Console.Write("\b \b");
-    }
-    Console.SetCursorPosition(left, top);
-}
-```
-
-
+Sample:
 ```c#
 using Microshaoft;
 using System;
@@ -56,6 +39,23 @@ System.Console.Out.WriteQRCodeLine
                     , outputPostionLeft             : null!                 //控制台二维码输出横向位置
                     , outputPostionTop              : null!                 //控制台二维码输出纵向位置
             );
+```
+
+Tips:
+```c#
+// Wide Char Detection
+var isWideChar = false;
+lock (_locker)
+{
+    (int left, int top) = Console.GetCursorPosition();
+    Console.Write(placeholderChar);
+    isWideChar = ((Console.CursorLeft - left) > 1);
+    while (Console.CursorLeft != left)
+    {
+        Console.Write("\b \b");
+    }
+    Console.SetCursorPosition(left, top);
+}
 ```
 
 Windows Console Output Screenshot:
