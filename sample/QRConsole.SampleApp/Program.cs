@@ -1,7 +1,7 @@
 ﻿using Microshaoft;
 using System;
 
-QRConsole.Output("https://www.cnblogs.com/stulzq/p/14282461.html?Thanks");
+Console.Out.WriteQRCodeLine("https://www.cnblogs.com/stulzq/p/14282461.html?Thanks");
 
 Console.WriteLine("㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨");
 Console.WriteLine();
@@ -15,7 +15,7 @@ var s =
 谁解比特位
 ~ Duang ~
 """;
-QRConsole.Output
+Console.Out.WriteQRCodeLine
             (
                 s
                 //, qrCompact: true

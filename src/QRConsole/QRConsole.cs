@@ -2,16 +2,120 @@
 
 using SixLabors.ImageSharp.PixelFormats;
 using System;
+using System.IO;
 using ZXing;
 using ZXing.QrCode;
 using ZXing.QrCode.Internal;
 
-public class QRConsole
+public static class QRConsole
 {
     //private static bool _isEncodingRegisterProvider = false;
 
     private static readonly object _locker = new ();
-    
+
+    public static void WriteQRCodeLine
+                            (
+                                this TextWriter @this
+                                , string data
+
+                                , string errorCorrectionLevel = "M"
+                                , string characterSet = "utf-8"
+
+                                , bool qrCompact = false
+                                , bool pureBarcode = false
+                                , int? qrVersion = null
+                                , bool disableECI = false
+                                , bool gs1Format = false
+
+                                , int width = 10
+                                , int height = 10
+                                , int margin = 1
+
+                                , ConsoleColor darkColor = ConsoleColor.Black
+                                , ConsoleColor lightColor = ConsoleColor.White
+                                , int thresholdOfDarkLightColor = 200
+
+                                , char outputChar = '囍'
+                            )
+    {
+        WriteQRCode
+            (
+                @this
+                , data
+
+                , errorCorrectionLevel
+                , characterSet
+
+                , qrCompact
+                , pureBarcode
+                , qrVersion
+                , disableECI
+                , gs1Format
+
+                , width
+                , height
+                , margin
+
+                , darkColor
+                , lightColor
+                , thresholdOfDarkLightColor
+
+                , outputChar
+            );
+        Console.WriteLine();
+    }
+
+    public static void WriteQRCode
+                            (
+                                this TextWriter @this
+                                , string data
+
+                                , string errorCorrectionLevel = "M"
+                                , string characterSet = "utf-8"
+
+                                , bool qrCompact = false
+                                , bool pureBarcode = false
+                                , int? qrVersion = null
+                                , bool disableECI = false
+                                , bool gs1Format = false
+
+                                , int width = 10
+                                , int height = 10
+                                , int margin = 1
+
+                                , ConsoleColor darkColor = ConsoleColor.Black
+                                , ConsoleColor lightColor = ConsoleColor.White
+                                , int thresholdOfDarkLightColor = 200
+
+                                , char outputChar = '囍'
+                            )
+    {
+        _ = @this;
+        Output
+            (
+                data
+
+                , errorCorrectionLevel
+                , characterSet
+
+                , qrCompact
+                , pureBarcode
+                , qrVersion
+                , disableECI
+                , gs1Format
+
+                , width
+                , height
+                , margin
+
+                , darkColor
+                , lightColor
+                , thresholdOfDarkLightColor
+
+                , outputChar
+            );
+    }
+
     public static void Output
                             (
                                 string data
@@ -79,6 +183,8 @@ public class QRConsole
         };
 
         using var image = writer.WriteAsImageSharp<Rgba32>(data);
+
+        
 
         for (var i = 0; i < image.Width; i++)
         {
