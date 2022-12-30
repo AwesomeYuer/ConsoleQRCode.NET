@@ -151,17 +151,20 @@ public static class ConsoleQRCodeHelper
                             this TextWriter @this
                             , string data
 
-                            , IDictionary<EncodeHintType, object> hints
-                            , int width = 10
-                            , int height = 10
+                            , IDictionary
+                                    <EncodeHintType, object>
+                                            qrEncodeHints
 
-                            , ConsoleColor darkColor = ConsoleColor.Black
-                            , ConsoleColor lightColor = ConsoleColor.White
+                            , int width                         = 10
+                            , int height                        = 10
 
-                            , char placeholderChar = '囍'
+                            , ConsoleColor darkColor            = ConsoleColor.Black
+                            , ConsoleColor lightColor           = ConsoleColor.White
 
-                            , int? outputPostionLeft = null!
-                            , int? outputPostionTop = null!
+                            , char placeholderChar              = '囍'
+
+                            , int? outputPostionLeft            = null!
+                            , int? outputPostionTop             = null!
                         )
     {
         WriteQRCode
@@ -170,7 +173,7 @@ public static class ConsoleQRCodeHelper
 
                 , data
 
-                , hints
+                , qrEncodeHints
                 
                 , width
                 , height
@@ -189,18 +192,20 @@ public static class ConsoleQRCodeHelper
                             this TextWriter @this
                             , string data
 
-                            , IDictionary<EncodeHintType, object> hints
+                            , IDictionary
+                                    <EncodeHintType, object>
+                                            qrEncodeHints
 
-                            , int width = 10
-                            , int height = 10
+                            , int width                         = 10
+                            , int height                        = 10
 
-                            , ConsoleColor darkColor = ConsoleColor.Black
-                            , ConsoleColor lightColor = ConsoleColor.White
+                            , ConsoleColor darkColor            = ConsoleColor.Black
+                            , ConsoleColor lightColor           = ConsoleColor.White
 
-                            , char placeholderChar = '囍'
+                            , char placeholderChar              = '囍'
 
-                            , int? outputPostionLeft = null!
-                            , int? outputPostionTop = null!
+                            , int? outputPostionLeft            = null!
+                            , int? outputPostionTop             = null!
                         )
     { 
         _ = @this;
@@ -208,7 +213,7 @@ public static class ConsoleQRCodeHelper
             (
                 data
                 
-                , hints
+                , qrEncodeHints
                 
                 , width
                 , height
@@ -226,18 +231,20 @@ public static class ConsoleQRCodeHelper
                             (
                                 string data
 
-                                , IDictionary<EncodeHintType, object> qrEncodeHints = null
+                                , IDictionary
+                                        <EncodeHintType, object>
+                                                qrEncodeHints
 
-                                , int width                 = 10
-                                , int height                = 10
+                                , int width                         = 10
+                                , int height                        = 10
 
-                                , ConsoleColor darkColor    = ConsoleColor.Black
-                                , ConsoleColor lightColor   = ConsoleColor.White
+                                , ConsoleColor darkColor            = ConsoleColor.Black
+                                , ConsoleColor lightColor           = ConsoleColor.White
 
-                                , char placeholderChar      = '囍'
+                                , char placeholderChar              = '囍'
 
-                                , int? outputPostionLeft    = null!
-                                , int? outputPostionTop     = null!
+                                , int? outputPostionLeft            = null!
+                                , int? outputPostionTop             = null!
                             )
     {
         // Wide Char Detection
