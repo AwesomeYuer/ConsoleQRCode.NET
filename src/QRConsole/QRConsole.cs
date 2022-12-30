@@ -33,7 +33,7 @@ public static class QRConsole
                                 , ConsoleColor lightColor           = ConsoleColor.White
                                 , int thresholdOfDarkLightColor     = 200
 
-                                , char outputChar                   = '!'
+                                , char outputChar                   = '囍'
 
                                 , int? outputPostionLeft            = null!
                                 , int? outputPostionTop             = null!
