@@ -131,13 +131,17 @@ public static class ConsoleQRCodeHelper
         Output
             (
                 data
+
                 , qrEncodeHints
+                
                 , width
                 , height
 
                 , darkColor
                 , lightColor
+                
                 , placeholderChar
+                
                 , outputPostionLeft
                 , outputPostionTop
             );
@@ -163,14 +167,19 @@ public static class ConsoleQRCodeHelper
         WriteQRCode
             (
                 @this
+
                 , data
+
                 , hints
+                
                 , width
                 , height
 
                 , darkColor
                 , lightColor
+                
                 , placeholderChar
+                
                 , outputPostionLeft
                 , outputPostionTop
             );
@@ -184,8 +193,6 @@ public static class ConsoleQRCodeHelper
 
                             , int width = 10
                             , int height = 10
-
-
 
                             , ConsoleColor darkColor = ConsoleColor.Black
                             , ConsoleColor lightColor = ConsoleColor.White
@@ -208,7 +215,9 @@ public static class ConsoleQRCodeHelper
 
                 , darkColor
                 , lightColor
+
                 , placeholderChar
+
                 , outputPostionLeft
                 , outputPostionTop
             );
@@ -305,5 +314,4 @@ public static class ConsoleQRCodeHelper
             Console.Write("\n");
         }
     }
-    
 }
