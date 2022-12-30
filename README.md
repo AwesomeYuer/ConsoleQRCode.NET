@@ -7,6 +7,9 @@ Support Linux/Windows
 ![sample](assets/WSL.Ubuntu.png)
 
 ```csharp
+using Microshaoft;
+using System;
+
 System.Console.Out.WriteQRCodeLine
             (
                       data                          : "于斯人也"             //待生成二维码原始数据
