@@ -36,7 +36,10 @@ Console.Out.WriteQRCodeLine
                     , outputPostionTop      : 10
                 );
 
+Console.WriteLine();
+Console.WriteLine();
 Console.WriteLine("㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨");
+Console.WriteLine();
 Console.WriteLine();
 
 var s =
