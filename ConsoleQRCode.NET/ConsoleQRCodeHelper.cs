@@ -118,10 +118,10 @@ public static class ConsoleQRCodeHelper
                             , int? outputPostionLeft            = null!
                             , int? outputPostionTop             = null!
 
+                            , int marginInPixel                 = 1
+
                             , int widthInPixel                  = 10
                             , int heightInPixel                 = 10
-
-                            , int margin                        = 1
 
                             , ConsoleColor darkColor            = ConsoleColor.Black
                             , ConsoleColor lightColor           = ConsoleColor.White
@@ -140,7 +140,7 @@ public static class ConsoleQRCodeHelper
             //, { EncodeHintType.QR_VERSION               , qrVersion                     }
             //, { EncodeHintType.DISABLE_ECI              , disableECI                    }
             //, { EncodeHintType.GS1_FORMAT               , gs1Format                     }
-            , { EncodeHintType.MARGIN                   , margin                        }
+            , { EncodeHintType.MARGIN                   , marginInPixel                     }
             //, { EncodeHintType.widthInPixel                    , widthInPixel             }
             //, { EncodeHintType.heightInPixel                   , heightInPixel            }
         };
@@ -174,10 +174,10 @@ public static class ConsoleQRCodeHelper
                                 , int? outputPostionLeft            = null!
                                 , int? outputPostionTop             = null!
 
+                                , int marginInPixel                 = 1
+
                                 , int widthInPixel                  = 10
                                 , int heightInPixel                 = 10
-
-                                , int margin                        = 1
 
                                 , ConsoleColor darkColor            = ConsoleColor.Black
                                 , ConsoleColor lightColor           = ConsoleColor.White
@@ -194,10 +194,10 @@ public static class ConsoleQRCodeHelper
                 , outputPostionLeft
                 , outputPostionTop
 
+                , marginInPixel
+
                 , widthInPixel
                 , heightInPixel
-
-                , margin
 
                 , darkColor
                 , lightColor

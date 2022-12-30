@@ -16,9 +16,10 @@ System.Console.Out.PrintQRCodeLine
                 , 10                                            //outputPostionLeft:    控制台二维码输出横向位置
                 , null!                                         //outputPostionTop:     控制台二维码输出纵向位置
 
-                , 10                                            //widthInPixel:         二维码图像生成宽度
-                , 10                                            //heightInPixel:        二维码图像生成高度
-                , 1                                             //margin:               二维码图像生成边缘空白宽高度
+                , 2                                             //marginInPixel:        二维码图像生成边缘空白宽高度
+
+                , 30                                            //widthInPixel:         二维码图像生成宽度
+                , 30                                            //heightInPixel:        二维码图像生成高度
 
                 , ConsoleColor.White                            //darkColor:            控制台二维码输出深颜色
                 , ConsoleColor.Red                              //lightColor:           控制台二维码输出浅颜色
