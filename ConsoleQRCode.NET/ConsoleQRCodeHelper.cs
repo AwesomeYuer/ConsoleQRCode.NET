@@ -21,16 +21,16 @@ public static class ConsoleQRCodeHelper
                                 <EncodeHintType, object>
                                         qrEncodeHints
 
-                        , int width = 10
-                        , int height = 10
+                        , int? outputPostionLeft            = null!
+                        , int? outputPostionTop             = null!
 
-                        , ConsoleColor darkColor = ConsoleColor.Black
-                        , ConsoleColor lightColor = ConsoleColor.White
+                        , int widthInPixel                  = 10
+                        , int heightInPixel                 = 10
 
-                        , char placeholderChar = '囍'
+                        , ConsoleColor darkColor            = ConsoleColor.Black
+                        , ConsoleColor lightColor           = ConsoleColor.White
 
-                        , int? outputPostionLeft = null!
-                        , int? outputPostionTop = null!
+                        , char placeholderChar              = '囍'
                     )
     {
         _ = @this;
@@ -59,8 +59,8 @@ public static class ConsoleQRCodeHelper
                                     (
                                         data
                                         , BarcodeFormat.QR_CODE
-                                        , width
-                                        , height
+                                        , widthInPixel
+                                        , heightInPixel
                                     );
         }
         else
@@ -70,8 +70,8 @@ public static class ConsoleQRCodeHelper
                                     (
                                         data
                                         , BarcodeFormat.QR_CODE
-                                        , width
-                                        , height
+                                        , widthInPixel
+                                        , heightInPixel
                                         , qrEncodeHints
                                     );
         }
@@ -115,19 +115,19 @@ public static class ConsoleQRCodeHelper
                             this TextWriter @this
                             , string data
 
-                            , int width = 10
-                            , int height = 10
-                            , int margin = 1
+                            , int? outputPostionLeft            = null!
+                            , int? outputPostionTop             = null!
 
-                            , string characterSet = nameof(Encoding.UTF8)
+                            , int widthInPixel                  = 10
+                            , int heightInPixel                 = 10
 
-                            , ConsoleColor darkColor = ConsoleColor.Black
-                            , ConsoleColor lightColor = ConsoleColor.White
+                            , int margin                        = 1
 
-                            , char placeholderChar = '囍'
+                            , ConsoleColor darkColor            = ConsoleColor.Black
+                            , ConsoleColor lightColor           = ConsoleColor.White
 
-                            , int? outputPostionLeft = null!
-                            , int? outputPostionTop = null!
+                            , string characterSet               = nameof(Encoding.UTF8)
+                            , char placeholderChar              = '囍'
                         )
     {
 
@@ -141,8 +141,8 @@ public static class ConsoleQRCodeHelper
             //, { EncodeHintType.DISABLE_ECI              , disableECI                    }
             //, { EncodeHintType.GS1_FORMAT               , gs1Format                     }
             , { EncodeHintType.MARGIN                   , margin                        }
-            //, { EncodeHintType.WIDTH                    , width                         }
-            //, { EncodeHintType.HEIGHT                   , height                        }
+            //, { EncodeHintType.widthInPixel                    , widthInPixel             }
+            //, { EncodeHintType.heightInPixel                   , heightInPixel            }
         };
 
         PrintQRCode
@@ -153,16 +153,16 @@ public static class ConsoleQRCodeHelper
 
                 , qrEncodeHints
 
-                , width
-                , height
+                , outputPostionLeft
+                , outputPostionTop
+
+                , widthInPixel
+                , heightInPixel
 
                 , darkColor
                 , lightColor
 
                 , placeholderChar
-
-                , outputPostionLeft
-                , outputPostionTop
             );
     }
 
@@ -171,19 +171,19 @@ public static class ConsoleQRCodeHelper
                                 this TextWriter @this
                                 , string data
 
-                                , int width                         = 10
-                                , int height                        = 10
+                                , int? outputPostionLeft            = null!
+                                , int? outputPostionTop             = null!
+
+                                , int widthInPixel                  = 10
+                                , int heightInPixel                 = 10
+
                                 , int margin                        = 1
 
-                                , string characterSet               = nameof(Encoding.UTF8)
-                                
                                 , ConsoleColor darkColor            = ConsoleColor.Black
                                 , ConsoleColor lightColor           = ConsoleColor.White
 
+                                , string characterSet               = nameof(Encoding.UTF8)
                                 , char placeholderChar              = '囍'
-
-                                , int? outputPostionLeft            = null!
-                                , int? outputPostionTop             = null!
                             )
     {
         PrintQRCode
@@ -191,19 +191,19 @@ public static class ConsoleQRCodeHelper
                 @this
                 , data
 
-                , width
-                , height
-                , margin
+                , outputPostionLeft
+                , outputPostionTop
 
-                , characterSet
+                , widthInPixel
+                , heightInPixel
+
+                , margin
 
                 , darkColor
                 , lightColor
 
+                , characterSet
                 , placeholderChar
-
-                , outputPostionLeft
-                , outputPostionTop
             );
         Console.WriteLine();
     }
@@ -217,16 +217,16 @@ public static class ConsoleQRCodeHelper
                                     <EncodeHintType, object>
                                             qrEncodeHints
 
-                            , int width                         = 10
-                            , int height                        = 10
+                            , int? outputPostionLeft            = null!
+                            , int? outputPostionTop             = null!
+
+                            , int widthInPixel                  = 10
+                            , int heightInPixel                 = 10
 
                             , ConsoleColor darkColor            = ConsoleColor.Black
                             , ConsoleColor lightColor           = ConsoleColor.White
 
                             , char placeholderChar              = '囍'
-
-                            , int? outputPostionLeft            = null!
-                            , int? outputPostionTop             = null!
                         )
     {
         PrintQRCode
@@ -236,17 +236,17 @@ public static class ConsoleQRCodeHelper
                 , data
 
                 , qrEncodeHints
-                
-                , width
-                , height
+
+                , outputPostionLeft
+                , outputPostionTop
+
+                , widthInPixel
+                , heightInPixel
 
                 , darkColor
                 , lightColor
                 
                 , placeholderChar
-                
-                , outputPostionLeft
-                , outputPostionTop
             );
         Console.WriteLine();
     }

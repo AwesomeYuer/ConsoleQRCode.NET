@@ -11,29 +11,28 @@ Console.WriteLine("======");
 System.Console.Out.PrintQRCodeLine
             (
                   data  : $@"AwesomeYuer于斯人也@Microshaoft
-                             AwesomeYuer于斯人也@Microshaoft"        //待生成二维码原始数据
+                             AwesomeYuer于斯人也@Microshaoft"   //待生成二维码原始数据
                     
-                , width                 : 10                        //二维码图像生成宽度
-                , height                : 10                        //二维码图像生成高度
-                , margin                : 1                         //二维码图像生成边缘空白宽高度
+                , 10                                            //outputPostionLeft:    控制台二维码输出横向位置
+                , null!                                         //outputPostionTop:     控制台二维码输出纵向位置
 
-                , characterSet          : nameof(Encoding.UTF8)     //二维码字符集 支持中文不乱码
+                , 10                                            //width:                二维码图像生成宽度
+                , 10                                            //height:               二维码图像生成高度
+                , 1                                             //margin:               二维码图像生成边缘空白宽高度
 
-                , darkColor             : ConsoleColor.White        //控制台二维码输出深颜色
-                , lightColor            : ConsoleColor.Red          //控制台二维码输出浅颜色
+                , ConsoleColor.White                            //darkColor:            控制台二维码输出深颜色
+                , ConsoleColor.Red                              //lightColor:           控制台二维码输出浅颜色
 
-                , placeholderChar       : '囍'                      //控制台二维码输出占位符 同时支持宽或窄字符, 窄: !@# , 宽: ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
-
-                , outputPostionLeft     : 10                        //控制台二维码输出横向位置
-                , outputPostionTop      : null!                     //控制台二维码输出纵向位置
+                , nameof(Encoding.UTF8)                         //二维码字符集 支持中文不乱码
+                , '囍'                                           //控制台二维码输出占位符 同时支持宽或窄字符, 窄: !@# , 宽: ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
             );
 
 Console.Out.PrintQRCodeLine
                 (
-                    data                    : "https://www.cnblogs.com/stulzq/p/14282461.html?Thanks"
-                    , placeholderChar       : '♂' //㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
-                    , outputPostionLeft     : 100
-                    , outputPostionTop      : 10
+                    "https://www.cnblogs.com/stulzq/p/14282461.html?Thanks"     //待生成二维码原始数据
+                    , 100                                                       //outputPostionLeft:    控制台二维码输出横向位置
+                    , 10                                                        //outputPostionTop:     控制台二维码输出纵向位置
+                    , placeholderChar: '♂'                                      //控制台二维码输出占位符 同时支持宽或窄字符, 窄: !@# , 宽: ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
                 );
 
 Console.WriteLine();
@@ -81,10 +80,11 @@ Console.Out.PrintQRCodeLine
                         //, { EncodeHintType.WIDTH                    , width                                 }
                         //, { EncodeHintType.HEIGHT                   , height                                }
                     }
-                , placeholderChar           : '$' //窄字符
-                , outputPostionLeft         : 20
+                
+                , 20                                                    //outputPostionLeft:    控制台二维码输出横向位置
                 , darkColor                 : ConsoleColor.Yellow
                 , lightColor                : ConsoleColor.DarkBlue
+                , placeholderChar: '$'                                  //控制台二维码输出占位符 窄字符 $
             );
 
 Console.Out.PrintQRCodeLine
