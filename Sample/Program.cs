@@ -7,7 +7,7 @@ Console.WriteLine("======");
 
 System.Console.Out.WriteQRCodeLine
             (
-                      data                          : "于斯人也"             //待生成二维码原始数据
+                      data  :       "AwesomeYuer于斯人也@Microshaoft"        //待生成二维码原始数据
 
                     , errorCorrectionLevel          : "M"                   //二维码纠错级别
                     , characterSet                  : "utf-8"               //二维码字符集
