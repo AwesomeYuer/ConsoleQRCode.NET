@@ -7,7 +7,7 @@ using ZXing;
 using ZXing.QrCode;
 using ZXing.QrCode.Internal;
 
-public static class QRCodeConsole
+public static class ConsoleQRCodeHelper
 {
     private static readonly object _locker = new ();
 

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\QRCodeConsole.NET\QRCodeConsole.NET.csproj" />
+    <ProjectReference Include="..\ConsoleQRCode.NET\ConsoleQRCode.NET.csproj" />
   </ItemGroup>
 
 
