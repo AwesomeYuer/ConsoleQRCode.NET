@@ -9,7 +9,22 @@ https://github.com/stulzq/QRConsole
 
 https://www.cnblogs.com/stulzq/p/14282461.html
 
-Functions Enhancement:
+Tips:
+```c#
+// Wide Char Detection
+var isWideChar = false;
+lock (_locker)
+{
+    (int left, int top) = Console.GetCursorPosition();
+    Console.Write(placeholderChar);
+    isWideChar = ((Console.CursorLeft - left) > 1);
+    while (Console.CursorLeft != left)
+    {
+        Console.Write("\b \b");
+    }
+    Console.SetCursorPosition(left, top);
+}
+```
 
 
 ```c#
