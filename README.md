@@ -126,5 +126,5 @@ lock (_locker)
 ## Windows Console Output Screenshot:
 ![sample](assets/Windows.png)
 
-## Linux/WSL/Ubuntu Console Screenshot:
+## Linux/WSL/Ubuntu Console Output Screenshot:
 ![sample](assets/WSL.Ubuntu.png)
