@@ -3,8 +3,14 @@ Print QR Code to console.
 
 Support Linux/Windows
 
-![sample](assets/Windows.png)
-![sample](assets/WSL.Ubuntu.png)
+Thanks for Open Source:
+
+https://github.com/stulzq/QRConsole
+
+https://www.cnblogs.com/stulzq/p/14282461.html
+
+Functions Enhancement:
+
 
 ```c#
 using Microshaoft;
@@ -37,8 +43,8 @@ System.Console.Out.WriteQRCodeLine
             );
 ```
 
-Thanks for Open Source:
+Windows Console Output Screenshot:
+![sample](assets/Windows.png)
 
-https://github.com/stulzq/QRConsole
-
-https://www.cnblogs.com/stulzq/p/14282461.html
+Linux/WSL/Ubuntu Console Screenshot:
+![sample](assets/WSL.Ubuntu.png)

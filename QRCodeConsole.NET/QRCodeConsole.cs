@@ -153,12 +153,13 @@ public static class QRCodeConsole
                                 , int? outputPostionTop             = null!
                             )
     {
-        var isWideDisplayChar = false;
+        // Wide Char Detection
+        var isWideChar = false;
         lock (_locker)
         {
             (int left, int top) = Console.GetCursorPosition();
             Console.Write(placeholderChar);
-            isWideDisplayChar = ((Console.CursorLeft - left) > 1);
+            isWideChar = ((Console.CursorLeft - left) > 1);
             while (Console.CursorLeft != left)
             {
                 Console.Write("\b \b");
@@ -226,7 +227,7 @@ public static class QRCodeConsole
                     Console.ForegroundColor = lightColor;
                 }
                 Console.Write(placeholderChar);
-                if (!isWideDisplayChar)
+                if (!isWideChar)
                 {
                     Console.Write(placeholderChar);
                 }
