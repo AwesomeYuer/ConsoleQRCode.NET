@@ -1,18 +1,16 @@
 ﻿namespace Microshaoft;
 
-using Cyjb;
 using SixLabors.ImageSharp.PixelFormats;
 using System;
-using System.Text.RegularExpressions;
-//using System.Runtime.InteropServices;
-//using System.Text;
 using ZXing;
 using ZXing.QrCode;
 using ZXing.QrCode.Internal;
-using Null.ConsoleEx;
+
 public class QRConsole
 {
     //private static bool _isEncodingRegisterProvider = false;
+
+    private static readonly object _locker = new ();
     
     public static void Output
                             (
@@ -35,9 +33,18 @@ public class QRConsole
                                 , ConsoleColor lightColor           = ConsoleColor.White
                                 , int thresholdOfDarkLightColor     = 200
 
-                                , char outputChar                   = '♂'//'与'
+                                , char outputChar                   = '囍'
                             )
     {
+        var isWideDisplayChar = false;
+        lock (_locker)
+        {
+            int startCursorPosition = Console.CursorLeft;
+            Console.Write(outputChar);
+            isWideDisplayChar = ((Console.CursorLeft - startCursorPosition) > 1);
+            Console.CursorLeft = startCursorPosition;
+        }
+
         static ErrorCorrectionLevel ToErrorCorrectionLevel(string errorCorrectionLevel) =>
         errorCorrectionLevel.ToUpper()
         switch
@@ -52,8 +59,6 @@ public class QRConsole
                                                 , $"Not expected {nameof(ErrorCorrectionLevel)} value: {errorCorrectionLevel}"
                                             )
         };
-
-        
 
         var writer = new BarcodeWriter<Rgba32>
         {
@@ -73,10 +78,8 @@ public class QRConsole
                                 }
         };
 
-        var isWideDisplayChar = (CharUtil.Width(outputChar) > 1);
-        isWideDisplayChar = ConsoleExS.IsWideDisplayChar(outputChar);
         using var image = writer.WriteAsImageSharp<Rgba32>(data);
-        
+
         for (var i = 0; i < image.Width; i++)
         {
             for (var j = 0; j < image.Height; j++)
@@ -93,7 +96,6 @@ public class QRConsole
                     Console.BackgroundColor = lightColor;
                     Console.ForegroundColor = lightColor;
                 }
-
                 Console.Write(outputChar);
                 if (!isWideDisplayChar)
                 {

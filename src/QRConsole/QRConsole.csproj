@@ -13,9 +13,9 @@
     <PackageReference Include="ZXing.Net.Bindings.ImageSharp.V2" Version="0.16.14" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <ProjectReference Include="..\Cyjb\Cyjb.csproj" />
     <ProjectReference Include="..\Null.ConsoleEx\Null.ConsoleEx.csproj" />
-  </ItemGroup>
+  </ItemGroup>-->
 
 </Project>
