@@ -75,7 +75,7 @@ public static class ConsoleQRCodeHelper
                             )
     {
         
-        Dictionary<EncodeHintType, object> qrEncodeHints = new()
+        Dictionary<EncodeHintType, object> qrEncodeHints = new ()
         {
               { EncodeHintType.CHARACTER_SET            , characterSet                  }
             //, { EncodeHintType.ERROR_CORRECTION         , errorCorrectionLevel          }
