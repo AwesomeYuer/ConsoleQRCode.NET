@@ -33,7 +33,7 @@ public static class QRConsole
                                 , ConsoleColor lightColor           = ConsoleColor.White
                                 , int thresholdOfDarkLightColor     = 200
 
-                                , char outputChar                   = '囍'
+                                , char placeholderChar              = '囍'
 
                                 , int? outputPostionLeft            = null!
                                 , int? outputPostionTop             = null!
@@ -61,7 +61,7 @@ public static class QRConsole
                 , lightColor
                 , thresholdOfDarkLightColor
 
-                , outputChar
+                , placeholderChar
 
                 , outputPostionLeft
                 , outputPostionTop
@@ -91,7 +91,7 @@ public static class QRConsole
                                 , ConsoleColor lightColor           = ConsoleColor.White
                                 , int thresholdOfDarkLightColor     = 200
 
-                                , char outputChar                   = '囍'
+                                , char placeholderChar              = '囍'
 
                                 , int? outputPostionLeft            = null!
                                 , int? outputPostionTop             = null!
@@ -119,7 +119,7 @@ public static class QRConsole
                 , lightColor
                 , thresholdOfDarkLightColor
 
-                , outputChar
+                , placeholderChar
 
                 , outputPostionLeft
                 , outputPostionTop
@@ -147,7 +147,7 @@ public static class QRConsole
                                 , ConsoleColor lightColor           = ConsoleColor.White
                                 , int thresholdOfDarkLightColor     = 200
 
-                                , char outputChar                   = '囍'
+                                , char placeholderChar              = '囍'
 
                                 , int? outputPostionLeft            = null!
                                 , int? outputPostionTop             = null!
@@ -157,7 +157,7 @@ public static class QRConsole
         lock (_locker)
         {
             (int left, int top) = Console.GetCursorPosition();
-            Console.Write(outputChar);
+            Console.Write(placeholderChar);
             isWideDisplayChar = ((Console.CursorLeft - left) > 1);
             while (Console.CursorLeft != left)
             {
@@ -225,10 +225,10 @@ public static class QRConsole
                     Console.BackgroundColor = lightColor;
                     Console.ForegroundColor = lightColor;
                 }
-                Console.Write(outputChar);
+                Console.Write(placeholderChar);
                 if (!isWideDisplayChar)
                 {
-                    Console.Write(outputChar);
+                    Console.Write(placeholderChar);
                 }
                 Console.ResetColor();
             }
