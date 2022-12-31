@@ -21,8 +21,8 @@ public static class ConsoleQRCodeHelper
                                         <EncodeHintType, object>
                                                 qrEncodeHints
 
-                                , int? outputPostionLeft            = null!
-                                , int? outputPostionTop             = null!
+                                , int? outputPostionLeft            = null
+                                , int? outputPostionTop             = null
 
                                 , int widthInPixel                  = 10
                                 , int heightInPixel                 = 10
@@ -41,7 +41,7 @@ public static class ConsoleQRCodeHelper
         {
             (int left, int top) = Console.GetCursorPosition();
             Console.Write(placeholderChar);
-            isWideChar = ((Console.CursorLeft - left) > 1);
+            isWideChar = (Console.CursorLeft - left) > 1;
             while (Console.CursorLeft != left)
             {
                 Console.Write("\b \b");
@@ -111,8 +111,8 @@ public static class ConsoleQRCodeHelper
                                 this TextWriter @this
                                 , string data
 
-                                , int? outputPostionLeft            = null!
-                                , int? outputPostionTop             = null!
+                                , int? outputPostionLeft            = null
+                                , int? outputPostionTop             = null
 
                                 , int marginInPixel                 = 1
 
@@ -167,8 +167,8 @@ public static class ConsoleQRCodeHelper
                                 this TextWriter @this
                                 , string data
 
-                                , int? outputPostionLeft            = null!
-                                , int? outputPostionTop             = null!
+                                , int? outputPostionLeft            = null
+                                , int? outputPostionTop             = null
 
                                 , int marginInPixel                 = 1
 
@@ -213,8 +213,8 @@ public static class ConsoleQRCodeHelper
                                         <EncodeHintType, object>
                                                 qrEncodeHints
 
-                                , int? outputPostionLeft            = null!
-                                , int? outputPostionTop             = null!
+                                , int? outputPostionLeft            = null
+                                , int? outputPostionTop             = null
 
                                 , int widthInPixel                  = 10
                                 , int heightInPixel                 = 10
