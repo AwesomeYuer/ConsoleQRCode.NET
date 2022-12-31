@@ -13,25 +13,25 @@ public static class ConsoleQRCodeHelper
     private static readonly object _locker = new ();
 
     public static void PrintQRCode
-                    (
-                        this TextWriter @this
-                        , string data
+                            (
+                                this TextWriter @this
+                                , string data
 
-                        , IDictionary
-                                <EncodeHintType, object>
-                                        qrEncodeHints
+                                , IDictionary
+                                        <EncodeHintType, object>
+                                                qrEncodeHints
 
-                        , int? outputPostionLeft            = null!
-                        , int? outputPostionTop             = null!
+                                , int? outputPostionLeft            = null!
+                                , int? outputPostionTop             = null!
 
-                        , int widthInPixel                  = 10
-                        , int heightInPixel                 = 10
+                                , int widthInPixel                  = 10
+                                , int heightInPixel                 = 10
 
-                        , ConsoleColor darkColor            = ConsoleColor.Black
-                        , ConsoleColor lightColor           = ConsoleColor.White
+                                , ConsoleColor darkColor            = ConsoleColor.Black
+                                , ConsoleColor lightColor           = ConsoleColor.White
 
-                        , char placeholderChar              = '囍'
-                    )
+                                , char placeholderChar              = '囍'
+                            )
     {
         _ = @this;
 
@@ -111,24 +111,24 @@ public static class ConsoleQRCodeHelper
     }
 
     public static void PrintQRCode
-                        (
-                            this TextWriter @this
-                            , string data
+                            (
+                                this TextWriter @this
+                                , string data
 
-                            , int? outputPostionLeft            = null!
-                            , int? outputPostionTop             = null!
+                                , int? outputPostionLeft            = null!
+                                , int? outputPostionTop             = null!
 
-                            , int marginInPixel                 = 1
+                                , int marginInPixel                 = 1
 
-                            , int widthInPixel                  = 10
-                            , int heightInPixel                 = 10
+                                , int widthInPixel                  = 10
+                                , int heightInPixel                 = 10
 
-                            , ConsoleColor darkColor            = ConsoleColor.Black
-                            , ConsoleColor lightColor           = ConsoleColor.White
+                                , ConsoleColor darkColor            = ConsoleColor.Black
+                                , ConsoleColor lightColor           = ConsoleColor.White
 
-                            , string characterSet               = nameof(Encoding.UTF8)
-                            , char placeholderChar              = '囍'
-                        )
+                                , string characterSet               = nameof(Encoding.UTF8)
+                                , char placeholderChar              = '囍'
+                            )
     {
 
         Dictionary<EncodeHintType, object> qrEncodeHints = new ()
@@ -187,67 +187,67 @@ public static class ConsoleQRCodeHelper
                             )
     {
         PrintQRCode
-            (
-                @this
-                , data
+                (
+                    @this
+                    , data
 
-                , outputPostionLeft
-                , outputPostionTop
+                    , outputPostionLeft
+                    , outputPostionTop
 
-                , marginInPixel
+                    , marginInPixel
 
-                , widthInPixel
-                , heightInPixel
+                    , widthInPixel
+                    , heightInPixel
 
-                , darkColor
-                , lightColor
+                    , darkColor
+                    , lightColor
 
-                , characterSet
-                , placeholderChar
-            );
+                    , characterSet
+                    , placeholderChar
+                );
         Console.WriteLine();
     }
    
     public static void PrintQRCodeLine
-                        (
-                            this TextWriter @this
-                            , string data
+                            (
+                                this TextWriter @this
+                                , string data
 
-                            , IDictionary
-                                    <EncodeHintType, object>
-                                            qrEncodeHints
+                                , IDictionary
+                                        <EncodeHintType, object>
+                                                qrEncodeHints
 
-                            , int? outputPostionLeft            = null!
-                            , int? outputPostionTop             = null!
+                                , int? outputPostionLeft            = null!
+                                , int? outputPostionTop             = null!
 
-                            , int widthInPixel                  = 10
-                            , int heightInPixel                 = 10
+                                , int widthInPixel                  = 10
+                                , int heightInPixel                 = 10
 
-                            , ConsoleColor darkColor            = ConsoleColor.Black
-                            , ConsoleColor lightColor           = ConsoleColor.White
+                                , ConsoleColor darkColor            = ConsoleColor.Black
+                                , ConsoleColor lightColor           = ConsoleColor.White
 
-                            , char placeholderChar              = '囍'
-                        )
+                                , char placeholderChar              = '囍'
+                            )
     {
         PrintQRCode
-            (
-                @this
+                (
+                    @this
 
-                , data
+                    , data
 
-                , qrEncodeHints
+                    , qrEncodeHints
 
-                , outputPostionLeft
-                , outputPostionTop
+                    , outputPostionLeft
+                    , outputPostionTop
 
-                , widthInPixel
-                , heightInPixel
+                    , widthInPixel
+                    , heightInPixel
 
-                , darkColor
-                , lightColor
+                    , darkColor
+                    , lightColor
                 
-                , placeholderChar
-            );
+                    , placeholderChar
+                );
         Console.WriteLine();
     }
 }
