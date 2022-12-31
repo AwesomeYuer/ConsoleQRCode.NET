@@ -92,7 +92,7 @@ public static class ConsoleQRCodeHelper
                     .BackgroundColor
                 = Console
                     .ForegroundColor
-                = bitMatrix[j, i] ? lightColor : darkColor;
+                = bitMatrix[i, j] ? lightColor : darkColor;
 
                 Console.Write(placeholderChar);
                 if (!isWideChar)
