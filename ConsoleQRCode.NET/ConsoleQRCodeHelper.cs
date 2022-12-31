@@ -88,16 +88,12 @@ public static class ConsoleQRCodeHelper
             }
             for (var j = 0; j < bitMatrix.Height; j++)
             {
-                if (!bitMatrix[i, j])
-                {
-                    Console.BackgroundColor = darkColor;
-                    Console.ForegroundColor = darkColor;
-                }
-                else
-                {
-                    Console.BackgroundColor = lightColor;
-                    Console.ForegroundColor = lightColor;
-                }
+                Console
+                    .BackgroundColor
+                = Console
+                        .ForegroundColor
+                = bitMatrix[j, i] ? lightColor : darkColor;
+
                 Console.Write(placeholderChar);
                 if (!isWideChar)
                 {
