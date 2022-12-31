@@ -133,16 +133,16 @@ public static class ConsoleQRCodeHelper
 
         Dictionary<EncodeHintType, object> qrEncodeHints = new ()
         {
-              { EncodeHintType.CHARACTER_SET            , characterSet                  }
-            //, { EncodeHintType.ERROR_CORRECTION         , errorCorrectionLevel          }
-            //, { EncodeHintType.QR_COMPACT               , qrCompact                     }
-            //, { EncodeHintType.PURE_BARCODE             , pureBarcode                   }
-            //, { EncodeHintType.QR_VERSION               , qrVersion                     }
-            //, { EncodeHintType.DISABLE_ECI              , disableECI                    }
-            //, { EncodeHintType.GS1_FORMAT               , gs1Format                     }
-            , { EncodeHintType.MARGIN                   , marginInPixel                     }
-            //, { EncodeHintType.widthInPixel                    , widthInPixel             }
-            //, { EncodeHintType.heightInPixel                   , heightInPixel            }
+              { EncodeHintType.CHARACTER_SET            , characterSet              }
+            //, { EncodeHintType.ERROR_CORRECTION         , errorCorrectionLevel    }
+            //, { EncodeHintType.QR_COMPACT               , qrCompact               }
+            //, { EncodeHintType.PURE_BARCODE             , pureBarcode             }
+            //, { EncodeHintType.QR_VERSION               , qrVersion               }
+            //, { EncodeHintType.DISABLE_ECI              , disableECI              }
+            //, { EncodeHintType.GS1_FORMAT               , gs1Format               }
+            , { EncodeHintType.MARGIN                   , marginInPixel             }
+            //, { EncodeHintType.widthInPixel                    , widthInPixel     }
+            //, { EncodeHintType.heightInPixel                   , heightInPixel    }
         };
 
         PrintQRCode
