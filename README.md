@@ -111,7 +111,7 @@ Console.Out.PrintQRCodeLine
                 s       //待生成二维码原始数据
             );
 ```
-## Windows/Linux Console Output Text:
+## Windows/WSLg/Linux Console Output Text:
 ```
 ======
 =====
@@ -283,11 +283,11 @@ Press any key to close this window . . .
 
 
 
-## Linux/WSL/Ubuntu gedit text display Screenshot:
-![sample](assets/WSL.Ubuntu.gedit.png)
+## Linux/WSLg/Ubuntu gedit text display Screenshot:
+![sample](assets/WSLg.Ubuntu.gedit.png)
 
 ## Windows Console Output Screenshot:
 ![sample](assets/Windows.png)
 
-## Linux/WSL/Ubuntu Console Output Screenshot:
-![sample](assets/WSL.Ubuntu.png)
+## Linux/WSLg/Ubuntu Console Output Screenshot:
+![sample](assets/WSLg.Ubuntu.png)
