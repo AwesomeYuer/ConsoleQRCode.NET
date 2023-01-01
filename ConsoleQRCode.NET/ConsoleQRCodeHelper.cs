@@ -32,8 +32,9 @@ public static class ConsoleQRCodeHelper
                                 , ConsoleColor darkColor            = ConsoleColor.Black
                                 , ConsoleColor lightColor           = ConsoleColor.White
 
-                                , char placeholderChar              = '█'   //控制台二维码输出占位符参数缺省值为 :   '█' ,二维码输出后,此时拷贝控制台屏幕到文本文件使用某些字体的文本编辑器(notepad及默认字体不行)仍然显示为二维码外观,
-                                                                            //其他字符作为二维码输出占位符不支持拷贝控制台屏幕到文本文件仍然显示为二维码外观, 文本文件中仅显示该字符, 相当于禁止文本拷贝二维码
+                                , char placeholderChar              = '█'   //控制台二维码输出占位符参数缺省值为 : '█' ,二维码输出后,此时选择控制台屏幕文本,
+                                                                            //并拷贝到文本文件,再使用某些字体(如:Consolas)的文本编辑器(Windows notepad及默认字体不行)打开,仍然显示为二维码外观,
+                                                                            //使用其他字符作为二维码输出占位符",文本文件中仅显示该字符,相当于禁止文本拷贝二维码
                             )
     {
         _ = @this;
