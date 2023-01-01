@@ -15,7 +15,7 @@ public static class ConsoleQRCodeHelper
     private const int _wideCharWidth = 2;
 
 
-    public static string GetQRCodeCharsString
+    public static string GetQRCodeConsoleText
                         (
                             string data
 
@@ -109,7 +109,7 @@ public static class ConsoleQRCodeHelper
             for (var j = 0; j < bitMatrix.Height; j++)
             {
                 var wideCharWidth = _wideCharWidth;
-                if (!bitMatrix[i, j])
+                if (bitMatrix[i, j])
                 {
                     while (wideCharWidth > 0)
                     {

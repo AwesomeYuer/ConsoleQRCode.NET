@@ -13,7 +13,7 @@ var @value = string.Empty;
 Console.WriteLine
             (
                 @value = ConsoleQRCodeHelper
-                                .GetQRCodeCharsString
+                                .GetQRCodeConsoleText
                                     (
                                         s
                                         , new Dictionary<EncodeHintType, object>()
