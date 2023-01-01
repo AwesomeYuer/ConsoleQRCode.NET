@@ -276,7 +276,7 @@ Console.Out.PrintQRCodeLine
 ██████████████████████████████████████████████████████████████████████████████████████
 
 
-D:\MyGitHub\ConsoleQRCode.NET\Sample\bin\Debug\net6.0\Sample.exe (process 26824) exited with code 0.
+X:\XXXXX\ConsoleQRCode.NET\Sample\bin\Debug\net6.0\Sample.exe (process 26824) exited with code 0.
 To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
 Press any key to close this window . . .
 ```
