@@ -32,23 +32,27 @@ public static class ConsoleQRCodeHelper
                                 , ConsoleColor darkColor            = ConsoleColor.Black
                                 , ConsoleColor lightColor           = ConsoleColor.White
 
-                                , char placeholderChar              = '囍'
+                                , char placeholderChar              = '█'   //控制台二维码输出占位符参数缺省值为 :   '█' ,二维码输出后,此时拷贝控制台屏幕到文本文件使用某些字体的文本编辑器(notepad及默认字体不行)仍然显示为二维码外观,
+                                                                            //其他字符作为二维码输出占位符不支持拷贝控制台屏幕到文本文件仍然显示为二维码外观, 文本文件中仅显示该字符, 相当于禁止文本拷贝二维码
                             )
     {
         _ = @this;
 
         // Wide Char Detection
         var charWidth = 0;
-        lock (_locker)
+        if (placeholderChar != '█')
         {
-            (int left, int top) = Console.GetCursorPosition();
-            Console.Write(placeholderChar);
-            charWidth = Console.CursorLeft - left;
-            while (Console.CursorLeft != left)
+            lock (_locker)
             {
-                Console.Write("\b \b");
+                (int left, int top) = Console.GetCursorPosition();
+                Console.Write(placeholderChar);
+                charWidth = Console.CursorLeft - left;
+                while (Console.CursorLeft != left)
+                {
+                    Console.Write("\b \b");
+                }
+                Console.SetCursorPosition(left, top);
             }
-            Console.SetCursorPosition(left, top);
         }
 
         QRCodeWriter qrCodeWriter = new ();
@@ -96,11 +100,19 @@ public static class ConsoleQRCodeHelper
                 = Console
                     .ForegroundColor
                 = bitMatrix[i, j] ? lightColor : darkColor;
-                var wideCharWidth = _wideCharWidth;
-                while (wideCharWidth > 0)
+
+                if (placeholderChar == '█')
                 {
-                    Console.Write(placeholderChar);
-                    wideCharWidth -= charWidth;
+                    Console.Write(bitMatrix[i, j] ? "  " : "██");
+                }
+                else
+                {
+                    var wideCharWidth = _wideCharWidth;
+                    while (wideCharWidth > 0)
+                    {
+                        Console.Write(placeholderChar);
+                        wideCharWidth -= charWidth;
+                    }
                 }
                 Console.ResetColor();
             }
@@ -127,7 +139,7 @@ public static class ConsoleQRCodeHelper
                                 , ConsoleColor darkColor            = ConsoleColor.Black
                                 , ConsoleColor lightColor           = ConsoleColor.White
 
-                                , char placeholderChar              = '囍'
+                                , char placeholderChar              = '█'
                             )
     {
         PrintQRCode
@@ -169,7 +181,7 @@ public static class ConsoleQRCodeHelper
                                 , ConsoleColor lightColor           = ConsoleColor.White
 
                                 , string characterSet               = nameof(Encoding.UTF8)
-                                , char placeholderChar              = '囍'
+                                , char placeholderChar              = '█'
                             )
     {
 
@@ -225,7 +237,7 @@ public static class ConsoleQRCodeHelper
                                 , ConsoleColor lightColor           = ConsoleColor.White
 
                                 , string characterSet               = nameof(Encoding.UTF8)
-                                , char placeholderChar              = '囍'
+                                , char placeholderChar              = '█'
                             )
     {
         PrintQRCode

@@ -22,6 +22,9 @@ Console.WriteLine("======");
 var s = $@"AwesomeYuer于斯人也@Microshaoft
                              AwesomeYuer于斯人也@Microshaoft";
 
+//控制台二维码输出占位符参数缺省值为 :   '█' ,二维码输出后,此时拷贝控制台屏幕到文本文件使用某些字体的文本编辑器(notepad及默认字体不行)仍然显示为二维码外观,
+//其他字符作为二维码输出占位符不支持拷贝控制台屏幕到文本文件仍然显示为二维码外观, 文本文件中仅显示该字符, 相当于禁止文本拷贝二维码
+
 System.Console.Out.PrintQRCodeLine
             (
                   s                                             //data                      :   待生成二维码原始数据
@@ -38,7 +41,8 @@ System.Console.Out.PrintQRCodeLine
                 , ConsoleColor.Red                              //lightColor                :   控制台二维码输出浅颜色
 
                 , nameof(Encoding.UTF8)                         //二维码字符集                :   utf-8 支持中文不乱码
-                //, '囍'                                         //控制台二维码输出占位符       :   同时支持宽或窄字符, 窄: !@# , 宽: ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
+                //, '囍'                                        //控制台二维码输出占位符        :   同时支持宽或窄字符, 窄: !@# , 宽: ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
+                //, '█'                                         //控制台二维码输出占位符        :   缺省值为 :   '█' ,此时拷贝控制台屏幕到文本文件使用某些字体的文本编辑器(notepad及默认字体不行)仍然显示为二维码外观, 其他字符不支持 
             );
 
 Console.Out.PrintQRCodeLine
@@ -106,6 +110,9 @@ Console.Out.PrintQRCodeLine
                 s       //待生成二维码原始数据
             );
 ```
+
+## Linux/WSL/Ubuntu gedit text display Screenshot:
+![sample](assets/WSL.Ubuntu.gedit.png)
 
 ## Windows Console Output Screenshot:
 ![sample](assets/Windows.png)
