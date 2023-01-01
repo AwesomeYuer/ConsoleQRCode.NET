@@ -53,7 +53,7 @@ public static class ConsoleQRCodeHelper
         //    }
         //}
 
-        QRCodeWriter qrCodeWriter = new();
+        QRCodeWriter qrCodeWriter = new ();
         BitMatrix bitMatrix;
 
         if (qrEncodeHints is null)
