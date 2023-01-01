@@ -91,7 +91,6 @@ public static class ConsoleQRCodeHelper
         {
             for (var i = 0; i < outputPostionTop.Value; i++)
             {
-                //result += "\r\n";
                 sb.AppendLine();
             }
         }
