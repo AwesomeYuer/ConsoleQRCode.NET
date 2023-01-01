@@ -13,6 +13,7 @@ public static class ConsoleQRCodeHelper
     private static readonly object _locker = new ();
 
     private const int _wideCharWidth = 2;
+
     public static void PrintQRCode
                             (
                                 this TextWriter @this
