@@ -104,7 +104,6 @@ public static class ConsoleQRCodeHelper
                 {
                     sb.Append(" ");
                 }
-                //Console.CursorLeft = outputPostionLeft.Value;
             }
             for (var j = 0; j < bitMatrix.Height; j++)
             {
