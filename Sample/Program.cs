@@ -29,6 +29,8 @@ Console.WriteLine
                                                 //, { EncodeHintType.WIDTH                    , 15                  }
                                                 //, { EncodeHintType.HEIGHT                   , 15                  }
                                             }
+                                        , 12
+                                        , 10
                                     )
             );
 
