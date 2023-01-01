@@ -88,5 +88,5 @@ Console.Out.PrintQRCodeLine
 
 Console.Out.PrintQRCodeLine
             (
-                $@"AwesomeYuer于斯人也"    //待生成二维码原始数据
+                $@"AwesomeYuer 于斯人也 한국어 ことに доступны ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨ 🌍💩"    //待生成二维码原始数据
             );
