@@ -8,6 +8,7 @@ using ZXing;
 using ZXing.Common;
 using ZXing.QrCode;
 
+
 public static class ConsoleQRCodeHelper
 {
     private static readonly object _locker = new ();
@@ -36,29 +37,29 @@ public static class ConsoleQRCodeHelper
         var sb = new StringBuilder();
 
         //Wide Char Detection
-        var darkCharWidth = 0;
-        var lightCharWidth = 0;
+        var darkCharWidth = ConsoleText.CalcCharLength(darkChar);
+        var lightCharWidth = ConsoleText.CalcCharLength(lightChar);
 
-        lock (_locker)
-        {
-            (int left, int top) = Console.GetCursorPosition();
-            Console.Write(darkChar);
-            darkCharWidth = Console.CursorLeft - left;
-            while (Console.CursorLeft != left)
-            {
-                Console.Write("\b \b");
-            }
-            Console.SetCursorPosition(left, top);
+        //lock (_locker)
+        //{
+        //    (int left, int top) = Console.GetCursorPosition();
+        //    Console.Write(darkChar);
+        //    darkCharWidth = Console.CursorLeft - left;
+        //    while (Console.CursorLeft != left)
+        //    {
+        //        Console.Write("\b \b");
+        //    }
+        //    Console.SetCursorPosition(left, top);
 
-            (left, top) = Console.GetCursorPosition();
-            Console.Write(lightChar);
-            lightCharWidth = Console.CursorLeft - left;
-            while (Console.CursorLeft != left)
-            {
-                Console.Write("\b \b");
-            }
-            Console.SetCursorPosition(left, top);
-        }
+        //    (left, top) = Console.GetCursorPosition();
+        //    Console.Write(lightChar);
+        //    lightCharWidth = Console.CursorLeft - left;
+        //    while (Console.CursorLeft != left)
+        //    {
+        //        Console.Write("\b \b");
+        //    }
+        //    Console.SetCursorPosition(left, top);
+        //}
 
         QRCodeWriter qrCodeWriter = new ();
         BitMatrix bitMatrix;
@@ -101,7 +102,7 @@ public static class ConsoleQRCodeHelper
             {
                 for (var ii = 0; ii < outputPostionLeft.Value; ii++)
                 {
-                    sb.Append(" ");
+                    sb.Append(' ');
                 }
             }
             for (var j = 0; j < bitMatrix.Height; j++)
@@ -160,17 +161,18 @@ public static class ConsoleQRCodeHelper
         var charWidth = 0;
         if (placeholderChar != '█')
         {
-            lock (_locker)
-            {
-                (int left, int top) = Console.GetCursorPosition();
-                @this.Write(placeholderChar);
-                charWidth = Console.CursorLeft - left;
-                while (Console.CursorLeft != left)
-                {
-                    @this.Write("\b \b");
-                }
-                Console.SetCursorPosition(left, top);
-            }
+            //lock (_locker)
+            //{
+            //    (int left, int top) = Console.GetCursorPosition();
+            //    @this.Write(placeholderChar);
+            //    charWidth = Console.CursorLeft - left;
+            //    while (Console.CursorLeft != left)
+            //    {
+            //        @this.Write("\b \b");
+            //    }
+            //    Console.SetCursorPosition(left, top);
+            //}
+            charWidth = ConsoleText.CalcCharLength( placeholderChar );
         }
 
         QRCodeWriter qrCodeWriter = new ();
