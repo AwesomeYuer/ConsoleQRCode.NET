@@ -23,35 +23,42 @@ public static class ConsoleQRCodeHelper
                                     <EncodeHintType, object>
                                             qrEncodeHints
 
-                            , int? outputPostionLeft = null
-                            , int? outputPostionTop = null
+                            , int? outputPostionLeft                = null
+                            , int? outputPostionTop                 = null
 
-                            , int widthInPixel = 10
-                            , int heightInPixel = 10
+                            , int widthInPixel                      = 10
+                            , int heightInPixel                     = 10
 
-                            , char placeholderChar = '█'   //控制台二维码输出占位符参数缺省值为 : '█' ,二维码输出后,此时选择控制台屏幕文本,
-                                                           //并拷贝到文本文件,再使用某些字体(如:Consolas)的文本编辑器(Windows notepad及默认字体不行)打开,仍然显示为二维码外观,
-                                                           //使用其他字符作为二维码输出占位符,文本文件中仅显示该字符,相当于禁止拷贝二维码文本
+                            , char darkChar                         = '█'
+                            , char lightChar                        = ' '
                         )
     {
         var sb = new StringBuilder();
 
-        // Wide Char Detection
-        //var charWidth = 0;
-        //if (placeholderChar != '█')
-        //{
-        //    lock (_locker)
-        //    {
-        //        (int left, int top) = Console.GetCursorPosition();
-        //        Console.Write(placeholderChar);
-        //        charWidth = Console.CursorLeft - left;
-        //        while (Console.CursorLeft != left)
-        //        {
-        //            Console.Write("\b \b");
-        //        }
-        //        Console.SetCursorPosition(left, top);
-        //    }
-        //}
+        //Wide Char Detection
+        var darkCharWidth = 0;
+        var lightCharWidth = 0;
+
+        lock (_locker)
+        {
+            (int left, int top) = Console.GetCursorPosition();
+            Console.Write(darkChar);
+            darkCharWidth = Console.CursorLeft - left;
+            while (Console.CursorLeft != left)
+            {
+                Console.Write("\b \b");
+            }
+            Console.SetCursorPosition(left, top);
+
+            (left, top) = Console.GetCursorPosition();
+            Console.Write(lightChar);
+            lightCharWidth = Console.CursorLeft - left;
+            while (Console.CursorLeft != left)
+            {
+                Console.Write("\b \b");
+            }
+            Console.SetCursorPosition(left, top);
+        }
 
         QRCodeWriter qrCodeWriter = new ();
         BitMatrix bitMatrix;
@@ -87,7 +94,6 @@ public static class ConsoleQRCodeHelper
                 //result += "\r\n";
                 sb.AppendLine();
             }
-            //Console.CursorTop = outputPostionTop.Value;
         }
 
         for (var i = 0; i < bitMatrix.Width; i++)
@@ -102,31 +108,24 @@ public static class ConsoleQRCodeHelper
             }
             for (var j = 0; j < bitMatrix.Height; j++)
             {
-                //Console
-                //    .BackgroundColor
-                //= Console
-                //    .ForegroundColor
-                //= bitMatrix[i, j] ? lightColor : darkColor;
-
-                if (placeholderChar == '█')
+                var wideCharWidth = _wideCharWidth;
+                if (!bitMatrix[i, j])
                 {
-                    //@this.Write(bitMatrix[i, j] ? "  " : "██");
-                    sb.Append(bitMatrix[i, j] ? "  " : "██");
+                    while (wideCharWidth > 0)
+                    {
+                        sb.Append(lightChar);
+                        wideCharWidth -= lightCharWidth;
+                    }
                 }
                 else
                 {
-                    //var wideCharWidth = _wideCharWidth;
-                    //while (wideCharWidth > 0)
-                    //{
-                    //    result += placeholderChar;
-                    //    //@this.Write(placeholderChar);
-                    //    wideCharWidth -= charWidth;
-                    //}
+                    while (wideCharWidth > 0)
+                    {
+                        sb.Append(darkChar);
+                        wideCharWidth -= darkCharWidth;
+                    }
                 }
-                //Console.ResetColor();
             }
-            //Console.ResetColor();
-            //@this.Write("\n");
             sb.AppendLine();
         }
         return sb.ToString();

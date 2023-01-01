@@ -30,7 +30,7 @@ Console.WriteLine
                                                 //, { EncodeHintType.HEIGHT                   , 15                  }
                                             }
                                         , 12
-                                        , 10
+                                        , 5
                                     )
             );
 
