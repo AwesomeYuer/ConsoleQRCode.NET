@@ -11,10 +11,7 @@ using ZXing.QrCode;
 
 public static class ConsoleQRCodeHelper
 {
-    private static readonly object _locker = new ();
-
     private const int _wideCharWidth = 2;
-
 
     public static string GetQRCodeConsoleText
                         (
