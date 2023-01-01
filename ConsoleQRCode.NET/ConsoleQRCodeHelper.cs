@@ -109,25 +109,25 @@ public static class ConsoleQRCodeHelper
     }
 
     public static void PrintQRCodeLine
-                                (
-                                    this TextWriter @this
-                                    , string data
+                            (
+                                this TextWriter @this
+                                , string data
 
-                                    , IDictionary
-                                            <EncodeHintType, object>
-                                                    qrEncodeHints
+                                , IDictionary
+                                        <EncodeHintType, object>
+                                                qrEncodeHints
 
-                                    , int? outputPostionLeft = null
-                                    , int? outputPostionTop = null
+                                , int? outputPostionLeft = null
+                                , int? outputPostionTop = null
 
-                                    , int widthInPixel = 10
-                                    , int heightInPixel = 10
+                                , int widthInPixel = 10
+                                , int heightInPixel = 10
 
-                                    , ConsoleColor darkColor = ConsoleColor.Black
-                                    , ConsoleColor lightColor = ConsoleColor.White
+                                , ConsoleColor darkColor = ConsoleColor.Black
+                                , ConsoleColor lightColor = ConsoleColor.White
 
-                                    , char placeholderChar = '囍'
-                                )
+                                , char placeholderChar = '囍'
+                            )
     {
         PrintQRCode
                 (
@@ -150,7 +150,6 @@ public static class ConsoleQRCodeHelper
                 );
         Console.WriteLine();
     }
-
 
     public static void PrintQRCode
                             (
@@ -249,6 +248,5 @@ public static class ConsoleQRCodeHelper
                 );
         Console.WriteLine();
     }
-   
-    
+  
 }
