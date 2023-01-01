@@ -8,7 +8,6 @@ using ZXing;
 using ZXing.Common;
 using ZXing.QrCode;
 
-
 public static class ConsoleQRCodeHelper
 {
     private const int _wideCharWidth = 2;
