@@ -14,6 +14,126 @@ public static class ConsoleQRCodeHelper
 
     private const int _wideCharWidth = 2;
 
+
+    public static string GetQRCodeCharsString
+                        (
+                            string data
+
+                            , IDictionary
+                                    <EncodeHintType, object>
+                                            qrEncodeHints
+
+                            , int? outputPostionLeft = null
+                            , int? outputPostionTop = null
+
+                            , int widthInPixel = 10
+                            , int heightInPixel = 10
+
+                            , char placeholderChar = '█'   //控制台二维码输出占位符参数缺省值为 : '█' ,二维码输出后,此时选择控制台屏幕文本,
+                                                           //并拷贝到文本文件,再使用某些字体(如:Consolas)的文本编辑器(Windows notepad及默认字体不行)打开,仍然显示为二维码外观,
+                                                           //使用其他字符作为二维码输出占位符,文本文件中仅显示该字符,相当于禁止拷贝二维码文本
+                        )
+    {
+        var sb = new StringBuilder();
+
+        // Wide Char Detection
+        //var charWidth = 0;
+        //if (placeholderChar != '█')
+        //{
+        //    lock (_locker)
+        //    {
+        //        (int left, int top) = Console.GetCursorPosition();
+        //        Console.Write(placeholderChar);
+        //        charWidth = Console.CursorLeft - left;
+        //        while (Console.CursorLeft != left)
+        //        {
+        //            Console.Write("\b \b");
+        //        }
+        //        Console.SetCursorPosition(left, top);
+        //    }
+        //}
+
+        QRCodeWriter qrCodeWriter = new();
+        BitMatrix bitMatrix;
+
+        if (qrEncodeHints is null)
+        {
+            bitMatrix = qrCodeWriter
+                                .encode
+                                    (
+                                        data
+                                        , BarcodeFormat.QR_CODE
+                                        , widthInPixel
+                                        , heightInPixel
+                                    );
+        }
+        else
+        {
+            bitMatrix = qrCodeWriter
+                                .encode
+                                    (
+                                        data
+                                        , BarcodeFormat.QR_CODE
+                                        , widthInPixel
+                                        , heightInPixel
+                                        , qrEncodeHints
+                                    );
+        }
+
+        if (outputPostionTop is not null)
+        {
+            for (var i = 0; i < outputPostionTop.Value; i++)
+            {
+                //result += "\r\n";
+                sb.AppendLine();
+            }
+            //Console.CursorTop = outputPostionTop.Value;
+        }
+
+        for (var i = 0; i < bitMatrix.Width; i++)
+        {
+            if (outputPostionLeft is not null)
+            {
+                for (var ii = 0; ii < outputPostionLeft.Value; ii++)
+                {
+                    sb.AppendLine(" ");
+                }
+                //Console.CursorLeft = outputPostionLeft.Value;
+            }
+            for (var j = 0; j < bitMatrix.Height; j++)
+            {
+                //Console
+                //    .BackgroundColor
+                //= Console
+                //    .ForegroundColor
+                //= bitMatrix[i, j] ? lightColor : darkColor;
+
+                if (placeholderChar == '█')
+                {
+                    //@this.Write(bitMatrix[i, j] ? "  " : "██");
+                    sb.Append(bitMatrix[i, j] ? "  " : "██");
+                }
+                else
+                {
+                    //var wideCharWidth = _wideCharWidth;
+                    //while (wideCharWidth > 0)
+                    //{
+                    //    result += placeholderChar;
+                    //    //@this.Write(placeholderChar);
+                    //    wideCharWidth -= charWidth;
+                    //}
+                }
+                //Console.ResetColor();
+            }
+            //Console.ResetColor();
+            //@this.Write("\n");
+            sb.AppendLine();
+        }
+        return sb.ToString();
+    }
+
+
+
     public static void PrintQRCode
                             (
                                 this TextWriter @this
@@ -46,11 +166,11 @@ public static class ConsoleQRCodeHelper
             lock (_locker)
             {
                 (int left, int top) = Console.GetCursorPosition();
-                Console.Write(placeholderChar);
+                @this.Write(placeholderChar);
                 charWidth = Console.CursorLeft - left;
                 while (Console.CursorLeft != left)
                 {
-                    Console.Write("\b \b");
+                    @this.Write("\b \b");
                 }
                 Console.SetCursorPosition(left, top);
             }
@@ -104,21 +224,21 @@ public static class ConsoleQRCodeHelper
 
                 if (placeholderChar == '█')
                 {
-                    Console.Write(bitMatrix[i, j] ? "  " : "██");
+                    @this.Write(bitMatrix[i, j] ? "  " : "██");
                 }
                 else
                 {
                     var wideCharWidth = _wideCharWidth;
                     while (wideCharWidth > 0)
                     {
-                        Console.Write(placeholderChar);
+                        @this.Write(placeholderChar);
                         wideCharWidth -= charWidth;
                     }
                 }
                 Console.ResetColor();
             }
             //Console.ResetColor();
-            Console.Write("\n");
+            @this.Write("\n");
         }
     }
 
@@ -162,7 +282,7 @@ public static class ConsoleQRCodeHelper
 
                     , placeholderChar
                 );
-        Console.WriteLine();
+        @this.WriteLine();
     }
 
     public static void PrintQRCode
@@ -260,7 +380,7 @@ public static class ConsoleQRCodeHelper
                     , characterSet
                     , placeholderChar
                 );
-        Console.WriteLine();
+        @this.WriteLine();
     }
   
 }
