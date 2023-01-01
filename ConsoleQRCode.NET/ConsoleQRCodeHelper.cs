@@ -117,16 +117,16 @@ public static class ConsoleQRCodeHelper
                                         <EncodeHintType, object>
                                                 qrEncodeHints
 
-                                , int? outputPostionLeft = null
-                                , int? outputPostionTop = null
+                                , int? outputPostionLeft            = null
+                                , int? outputPostionTop             = null
 
-                                , int widthInPixel = 10
-                                , int heightInPixel = 10
+                                , int widthInPixel                  = 10
+                                , int heightInPixel                 = 10
 
-                                , ConsoleColor darkColor = ConsoleColor.Black
-                                , ConsoleColor lightColor = ConsoleColor.White
+                                , ConsoleColor darkColor            = ConsoleColor.Black
+                                , ConsoleColor lightColor           = ConsoleColor.White
 
-                                , char placeholderChar = '囍'
+                                , char placeholderChar              = '囍'
                             )
     {
         PrintQRCode
