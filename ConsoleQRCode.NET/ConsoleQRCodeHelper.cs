@@ -97,6 +97,7 @@ public static class ConsoleQRCodeHelper
                 Console.Write(placeholderChar);
                 if (!isWideChar)
                 {
+                    wideCharWidth -= charWidth;
                     Console.Write(placeholderChar);
                 }
                 Console.ResetColor();
