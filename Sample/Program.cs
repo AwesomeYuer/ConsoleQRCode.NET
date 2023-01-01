@@ -6,10 +6,12 @@ Console.WriteLine("======");
 Console.WriteLine("======\b \b");
 Console.WriteLine("======");
 
+var s = $@"AwesomeYuer于斯人也@Microshaoft
+                             AwesomeYuer于斯人也@Microshaoft";
+
 System.Console.Out.PrintQRCodeLine
             (
-                  data: $@"AwesomeYuer于斯人也@Microshaoft
-                             AwesomeYuer于斯人也@Microshaoft"   //待生成二维码原始数据
+                  s                                             //data                      :   待生成二维码原始数据
 
                 , 10                                            //outputPostionLeft         :   控制台二维码输出横向位置
                 , null!                                         //outputPostionTop          :   控制台二维码输出纵向位置
@@ -36,11 +38,10 @@ Console.Out.PrintQRCodeLine
 
 Console.WriteLine();
 Console.WriteLine();
-Console.WriteLine("㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨");
 Console.WriteLine();
 Console.WriteLine();
 
-var s =
+s =
 """
 ♂㊚囍㊛♀
 满屏荒唐言
@@ -85,8 +86,9 @@ Console.Out.PrintQRCodeLine
                 , lightColor            : ConsoleColor.DarkBlue
                 , placeholderChar       : '$'                       //控制台二维码输出占位符   :   窄字符 $
             );
+s = $@"AwesomeYuer 于斯人也 한국어 ことに доступны ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨ 🌍💩";
 
 Console.Out.PrintQRCodeLine
             (
-                $@"AwesomeYuer 于斯人也 한국어 ことに доступны ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨ 🌍💩"    //待生成二维码原始数据
+                s       //待生成二维码原始数据
             );
