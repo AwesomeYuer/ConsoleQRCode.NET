@@ -2,6 +2,7 @@
 using System.Text;
 using ZXing;
 
+
 Console.WriteLine("======");
 Console.WriteLine("======\b \b");
 Console.WriteLine("======");
