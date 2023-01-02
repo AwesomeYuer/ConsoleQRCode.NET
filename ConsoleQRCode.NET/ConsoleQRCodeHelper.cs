@@ -41,8 +41,8 @@ public static class ConsoleQRCodeHelper
                             )
     {
         //Wide Char Detection
-        var darkCharWidth   = ConsoleText.CalcCharLength(darkColorChar);
-        var lightCharWidth  = ConsoleText.CalcCharLength(lightColorChar);
+        var darkCharWidth   = ConsoleText.CalculateCharLength(darkColorChar);
+        var lightCharWidth  = ConsoleText.CalculateCharLength(lightColorChar);
 
         QRCodeWriter qrCodeWriter = new ();
         BitMatrix bitMatrix;
