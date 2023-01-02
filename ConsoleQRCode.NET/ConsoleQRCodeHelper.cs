@@ -21,11 +21,11 @@ public static class ConsoleQRCodeHelper
                                 <EncodeHintType, object>
                                         qrEncodeHints
                         
-                        , Action<int> onOutputPostionTopProcess
-                        , Action<int> onOutputPostionLeftProcess
-                        , Action<bool> onBitMatrixProcess
-                        , Action<int> onColumnProcessed
-                        , Action<int> onRowProcessed
+                        , Action<int>   onOutputPostionTopProcess
+                        , Action<int>   onOutputPostionLeftProcess
+                        , Action<bool>  onBitMatrixProcess
+                        , Action<int>   onColumnProcessed
+                        , Action<int>   onRowProcessed
 
                         , int? outputPostionLeft                        = null
                         , int? outputPostionTop                         = null
@@ -38,8 +38,8 @@ public static class ConsoleQRCodeHelper
                     )
     {
         //Wide Char Detection
-        var darkCharWidth = ConsoleText.CalcCharLength(darkColorChar);
-        var lightCharWidth = ConsoleText.CalcCharLength(lightColorChar);
+        var darkCharWidth   = ConsoleText.CalcCharLength(darkColorChar);
+        var lightCharWidth  = ConsoleText.CalcCharLength(lightColorChar);
 
         QRCodeWriter qrCodeWriter = new ();
         BitMatrix bitMatrix;
