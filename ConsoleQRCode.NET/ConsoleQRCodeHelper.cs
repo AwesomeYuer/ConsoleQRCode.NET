@@ -129,29 +129,29 @@ public static class ConsoleQRCodeHelper
                     (
                         data
                         , qrEncodeHints
-                        , (x) =>
+                        , (left) =>
                         {
-                            for (var i = 0; i < x; i++)
+                            for (var i = 0; i < left; i++)
                             {
                                 sb.AppendLine();
                             }
                         }
-                        , (x) =>
+                        , (top) =>
                         {
-                            for (var i = 0; i < x; i++)
+                            for (var i = 0; i < top; i++)
                             {
                                 sb.Append(' ');
                             }
                         }
-                        , (x) =>
+                        , (bitMatrix) =>
                         {
-                            sb.Append(x ? lightColorChar : darkColorChar);
+                            sb.Append(bitMatrix ? lightColorChar : darkColorChar);
                         }
-                        , (x) =>
+                        , (column) =>
                         {
 
                         }
-                        , (x) =>
+                        , (row) =>
                         {
                             sb.AppendLine();
                         }
@@ -195,28 +195,28 @@ public static class ConsoleQRCodeHelper
                     (
                         data
                         , qrEncodeHints
-                        , (x) =>
+                        , (left) =>
                         {
                             Console.CursorTop = outputPostionTop!.Value;
                         }
-                        , (x) =>
+                        , (top) =>
                         {
                             Console.CursorLeft = outputPostionLeft!.Value;
                         }
-                        , (x) =>
+                        , (bitMatrix) =>
                         {
                             Console
                                 .BackgroundColor
                             = Console
                                 .ForegroundColor
-                            = x ? lightColor : darkColor;
-                            @this.Write(x ? lightColorChar : darkColorChar);
+                            = bitMatrix ? lightColor : darkColor;
+                            @this.Write(bitMatrix ? lightColorChar : darkColorChar);
                         }
-                        , (x) =>
+                        , (column) =>
                         {
                             Console.ResetColor();
                         }
-                        , (x) =>
+                        , (row) =>
                         {
                             Console.Write('\n');
                         }
