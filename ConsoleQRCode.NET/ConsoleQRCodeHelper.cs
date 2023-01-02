@@ -210,6 +210,7 @@ public static class ConsoleQRCodeHelper
                             = Console
                                 .ForegroundColor
                             = bitMatrix ? lightColor : darkColor;
+
                             @this.Write(bitMatrix ? lightColorChar : darkColorChar);
                         }
                         , (column) =>
