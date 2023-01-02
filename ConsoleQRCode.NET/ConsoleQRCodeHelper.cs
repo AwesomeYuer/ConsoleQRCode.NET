@@ -40,8 +40,8 @@ public static class ConsoleQRCodeHelper
                             )
     {
         //Wide Char Detection
-        var darkCharWidth   = ConsoleText.CalculateCharLengthB(darkColorChar);
-        var lightCharWidth  = ConsoleText.CalculateCharLengthB(lightColorChar);
+        var darkCharWidth   = CharsTextHelper.CalculateCharLengthB(darkColorChar);
+        var lightCharWidth  = CharsTextHelper.CalculateCharLengthB(lightColorChar);
 
         QRCodeWriter qrCodeWriter = new ();
         BitMatrix bitMatrix;
@@ -86,13 +86,13 @@ public static class ConsoleQRCodeHelper
             {
                 var wideCharWidth = _wideCharWidth;
 
-                var b = bitMatrix[x, y];
+                var bit = bitMatrix[x, y];
                 
                 while (wideCharWidth > 0)
                 {
-                    onBitMatrixProcess(b);
+                    onBitMatrixProcess(bit);
 
-                    wideCharWidth -= b ? lightCharWidth : darkCharWidth;
+                    wideCharWidth -= bit ? lightCharWidth : darkCharWidth;
                 }
                 
                 onColumnProcessed(x);
@@ -443,7 +443,7 @@ public static class ConsoleQRCodeHelper
 }
 
 //file
-public static class ConsoleText
+public static class CharsTextHelper
 {
     private struct CharLengthSegment : IComparable<CharLengthSegment>
     {
