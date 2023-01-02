@@ -73,26 +73,29 @@ public static class ConsoleQRCodeHelper
             onOutputPostionTopProcess(outputPostionTop.Value);
         }
 
-        for (var i = 0; i < bitMatrix.Height; i++)
+        for (var y = 0; y < bitMatrix.Height; y++)
         {
             if (outputPostionLeft is not null)
             {
                 onOutputPostionLeftProcess(outputPostionLeft.Value);
             }
-            for (var j = 0; j < bitMatrix.Width; j++)
+
+            for (var x = 0; x < bitMatrix.Width; x++)
             {
                 var wideCharWidth = _wideCharWidth;
-                var b = bitMatrix[j, i];
+
+                var b = bitMatrix[x, y];
                 
                 while (wideCharWidth > 0)
                 {
                     onBitMatrixProcess(b);
+
                     wideCharWidth -= b ? lightCharWidth : darkCharWidth;
                 }
                 
-                onColumnProcessed(j);
+                onColumnProcessed(x);
             }
-            onRowProcessed(i);
+            onRowProcessed(y);
         }
     }
 
@@ -120,16 +123,16 @@ public static class ConsoleQRCodeHelper
                     (
                         data
                         , qrEncodeHints
-                        , (top) =>
+                        , (y) =>
                         {
-                            for (var i = 0; i < top; i++)
+                            for (var i = 0; i < y; i++)
                             {
                                 sb.AppendLine();
                             }
                         }
-                        , (left) =>
+                        , (x) =>
                         {
-                            for (var i = 0; i < left; i++)
+                            for (var i = 0; i < x; i++)
                             {
                                 sb.Append(' ');
                             }
@@ -138,11 +141,11 @@ public static class ConsoleQRCodeHelper
                         {
                             sb.Append(matrixBit ? lightColorChar : darkColorChar);
                         }
-                        , (column) =>
+                        , (x) =>
                         {
 
                         }
-                        , (row) =>
+                        , (y) =>
                         {
                             sb.AppendLine();
                         }
@@ -186,13 +189,13 @@ public static class ConsoleQRCodeHelper
                     (
                         data
                         , qrEncodeHints
-                        , (top) =>
+                        , (y) =>
                         {
-                            Console.CursorTop = top;
+                            Console.CursorTop = y;
                         }
-                        , (left) =>
+                        , (x) =>
                         {
-                            Console.CursorLeft = left;
+                            Console.CursorLeft = x;
                         }
                         , (matrixBit) =>
                         {
@@ -204,11 +207,11 @@ public static class ConsoleQRCodeHelper
 
                             @this.Write(matrixBit ? lightColorChar : darkColorChar);
                         }
-                        , (column) =>
+                        , (x) =>
                         {
                             Console.ResetColor();
                         }
-                        , (row) =>
+                        , (y) =>
                         {
                             Console.Write('\n');
                         }
