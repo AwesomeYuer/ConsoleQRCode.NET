@@ -101,7 +101,7 @@ public static class ConsoleQRCodeHelper
         }
     }
 
-    public static string GenerateQRCodeConsoleText
+    public static string GenerateQRCodeCharsText
                             (
                                 string data
 
@@ -165,7 +165,7 @@ public static class ConsoleQRCodeHelper
     }
 
 
-    public static string GenerateQRCodeConsoleText
+    public static string GenerateQRCodeCharsText
                             (
                                 string data
 
@@ -200,7 +200,7 @@ public static class ConsoleQRCodeHelper
         };
 
         return
-            GenerateQRCodeConsoleText
+            GenerateQRCodeCharsText
                 (
                       data
 

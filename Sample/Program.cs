@@ -14,7 +14,7 @@ var @value = string.Empty;
 Console.WriteLine
             (
                 @value = ConsoleQRCodeHelper
-                                .GenerateQRCodeConsoleText
+                                .GenerateQRCodeCharsText
                                     (
                                         s
                                         , new Dictionary<EncodeHintType, object>()
