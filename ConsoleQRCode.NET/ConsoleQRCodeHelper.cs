@@ -7,6 +7,7 @@ using System.Text;
 using ZXing;
 using ZXing.Common;
 using ZXing.QrCode;
+using ZXing.QrCode.Internal;
 
 public static class ConsoleQRCodeHelper
 {
@@ -14,28 +15,30 @@ public static class ConsoleQRCodeHelper
 
 
     private static void QRCodeBitMatrixProcess
-                    (
-                        string data
+                            (
+                                string data
 
-                        , IDictionary
-                                <EncodeHintType, object>
-                                        qrEncodeHints
+                                , IDictionary
+                                        <EncodeHintType, object>
+                                                qrEncodeHints
                         
-                        , Action<int>   onOutputPostionTopProcess
-                        , Action<int>   onOutputPostionLeftProcess
-                        , Action<bool>  onBitMatrixProcess
-                        , Action<int>   onColumnProcessed
-                        , Action<int>   onRowProcessed
+                                , Action<int>   onOutputPostionTopProcess
+                                , Action<int>   onOutputPostionLeftProcess
+                                , Action<bool>  onBitMatrixProcess
+                                , Action<int>   onColumnProcessed
+                                , Action<int>   onRowProcessed
 
-                        , int? outputPostionLeft                        = null
-                        , int? outputPostionTop                         = null
+                                , int? outputPostionLeft                        = null
+                                , int? outputPostionTop                         = null
 
-                        , int widthInPixel                              = 10
-                        , int heightInPixel                             = 10
+                                , int widthInPixel                              = 10
+                                , int heightInPixel                             = 10
 
-                        , char darkColorChar                            = '█'
-                        , char lightColorChar                           = ' '
-                    )
+                                // darkColorChar 与 lightColorChar 不一样时, 此时复制文本到使用某些字体的文本编辑器(notepad及字体不行, 由于'█'宽度为2)仍然显示为二维码外观
+                                // darkColorChar 与 lightColorChar 一样时,   此时复制文本到使用某些字体的文本编辑器(notepad及字体不行, 由于'█'宽度为2)无法显示为二维码外观, 相当于禁止复制二维码文本
+                                , char darkColorChar                            = '█'
+                                , char lightColorChar                           = ' '
+                            )
     {
         //Wide Char Detection
         var darkCharWidth   = ConsoleText.CalcCharLength(darkColorChar);
@@ -99,23 +102,23 @@ public static class ConsoleQRCodeHelper
         }
     }
 
-    public static string GetQRCodeConsoleText
-                        (
-                            string data
+    public static string GenerateQRCodeConsoleText
+                            (
+                                string data
 
-                            , IDictionary
-                                    <EncodeHintType, object>
-                                            qrEncodeHints
+                                , IDictionary
+                                        <EncodeHintType, object>
+                                                qrEncodeHints
 
-                            , int? outputPostionLeft                    = null
-                            , int? outputPostionTop                     = null
+                                , int? outputPostionLeft                    = null
+                                , int? outputPostionTop                     = null
 
-                            , int widthInPixel                          = 10
-                            , int heightInPixel                         = 10
+                                , int widthInPixel                          = 10
+                                , int heightInPixel                         = 10
 
-                            , char darkColorChar                        = '█'
-                            , char lightColorChar                       = ' '
-                        )
+                                , char darkColorChar                        = '█'
+                                , char lightColorChar                       = ' '
+                            )
     {
         var sb = new StringBuilder();
 
@@ -160,6 +163,59 @@ public static class ConsoleQRCodeHelper
 
                     );
         return sb.ToString();
+    }
+
+
+    public static string GenerateQRCodeConsoleText
+                            (
+                                string data
+
+                                , int? outputPostionLeft                        = null
+                                , int? outputPostionTop                         = null
+
+                                , int marginInPixel                             = 1    
+                    
+                                , int widthInPixel                              = 10
+                                , int heightInPixel                             = 10
+
+                                , string errorCorrectionLevel                   = "M"
+
+                                , char darkColorChar                            = '█'
+                                , char lightColorChar                           = ' '
+
+                                , string characterSet                           = nameof(Encoding.UTF8)
+                            )
+    {
+        Dictionary<EncodeHintType, object> qrEncodeHints = new()
+        {
+              { EncodeHintType.CHARACTER_SET            , characterSet              }
+            , { EncodeHintType.ERROR_CORRECTION         , errorCorrectionLevel      }
+            //, { EncodeHintType.QR_COMPACT               , qrCompact               }
+            //, { EncodeHintType.PURE_BARCODE             , pureBarcode             }
+            //, { EncodeHintType.QR_VERSION               , qrVersion               }
+            //, { EncodeHintType.DISABLE_ECI              , disableECI              }
+            //, { EncodeHintType.GS1_FORMAT               , gs1Format               }
+            , { EncodeHintType.MARGIN                   , marginInPixel             }
+            //, { EncodeHintType.widthInPixel                    , widthInPixel     }
+            //, { EncodeHintType.heightInPixel                   , heightInPixel    }
+        };
+
+        return
+            GenerateQRCodeConsoleText
+                (
+                      data
+
+                    , qrEncodeHints
+
+                    , outputPostionLeft
+                    , outputPostionTop
+
+                    , widthInPixel
+                    , heightInPixel
+
+                    , darkColorChar
+                    , lightColorChar
+                );
     }
 
     public static void PrintQRCode
@@ -287,6 +343,8 @@ public static class ConsoleQRCodeHelper
                                 , int widthInPixel                      = 10
                                 , int heightInPixel                     = 10
 
+                                , string errorCorrectionLevel           = "M"
+
                                 , ConsoleColor darkColor                = ConsoleColor.Black
                                 , ConsoleColor lightColor               = ConsoleColor.White
 
@@ -300,7 +358,7 @@ public static class ConsoleQRCodeHelper
         Dictionary<EncodeHintType, object> qrEncodeHints = new()
         {
               { EncodeHintType.CHARACTER_SET            , characterSet              }
-            //, { EncodeHintType.ERROR_CORRECTION         , errorCorrectionLevel    }
+            , { EncodeHintType.ERROR_CORRECTION         , errorCorrectionLevel      }
             //, { EncodeHintType.QR_COMPACT               , qrCompact               }
             //, { EncodeHintType.PURE_BARCODE             , pureBarcode             }
             //, { EncodeHintType.QR_VERSION               , qrVersion               }
@@ -346,6 +404,8 @@ public static class ConsoleQRCodeHelper
                                 , int widthInPixel                      = 10
                                 , int heightInPixel                     = 10
 
+                                , string errorCorrectionLevel           = "M"
+
                                 , ConsoleColor darkColor                = ConsoleColor.Black
                                 , ConsoleColor lightColor               = ConsoleColor.White
 
@@ -367,6 +427,8 @@ public static class ConsoleQRCodeHelper
 
                     , widthInPixel
                     , heightInPixel
+
+                    , errorCorrectionLevel
 
                     , darkColor
                     , lightColor
