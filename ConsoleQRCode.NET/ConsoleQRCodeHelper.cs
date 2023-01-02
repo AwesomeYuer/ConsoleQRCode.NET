@@ -129,16 +129,16 @@ public static class ConsoleQRCodeHelper
                     (
                         data
                         , qrEncodeHints
-                        , (left) =>
+                        , (top) =>
                         {
-                            for (var i = 0; i < left; i++)
+                            for (var i = 0; i < top; i++)
                             {
                                 sb.AppendLine();
                             }
                         }
-                        , (top) =>
+                        , (left) =>
                         {
-                            for (var i = 0; i < top; i++)
+                            for (var i = 0; i < left; i++)
                             {
                                 sb.Append(' ');
                             }
@@ -195,13 +195,13 @@ public static class ConsoleQRCodeHelper
                     (
                         data
                         , qrEncodeHints
-                        , (left) =>
-                        {
-                            Console.CursorTop = outputPostionTop!.Value;
-                        }
                         , (top) =>
                         {
-                            Console.CursorLeft = outputPostionLeft!.Value;
+                            Console.CursorTop = top;
+                        }
+                        , (left) =>
+                        {
+                            Console.CursorLeft = left;
                         }
                         , (bitMatrix) =>
                         {
