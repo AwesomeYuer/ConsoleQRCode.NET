@@ -40,8 +40,8 @@ public static class ConsoleQRCodeHelper
                             )
     {
         //Wide Char Detection
-        var darkCharWidth   = ConsoleText.CalculateCharLength(darkColorChar);
-        var lightCharWidth  = ConsoleText.CalculateCharLength(lightColorChar);
+        var darkCharWidth   = ConsoleText.CalculateCharLengthB(darkColorChar);
+        var lightCharWidth  = ConsoleText.CalculateCharLengthB(lightColorChar);
 
         QRCodeWriter qrCodeWriter = new ();
         BitMatrix bitMatrix;
@@ -354,7 +354,7 @@ public static class ConsoleQRCodeHelper
                             )
     {
 
-        Dictionary<EncodeHintType, object> qrEncodeHints = new()
+        Dictionary<EncodeHintType, object> qrEncodeHints = new ()
         {
               { EncodeHintType.CHARACTER_SET            , characterSet              }
             , { EncodeHintType.ERROR_CORRECTION         , errorCorrectionLevel      }
@@ -778,22 +778,22 @@ public static class ConsoleText
     public static bool IsWideChar(char c)
     {
         return
-            CalculateCharLength(c) > 1;
+            CalculateCharLengthB(c) > 1;
     }
-    public static int CalculateCharLength(char c)
+    public static int CalculateCharLengthB(char c)
     {
         return
             AllCharsLengthSegments
                             .BinarySearch(c)
                             .Length;
     }
-    public static int CalcStringLength(string s)
+    public static int CalculateStringLengthB(string s)
     {
         return
             s
                 .Select
                     (
-                        CalculateCharLength
+                        CalculateCharLengthB
                     )
                 .Sum();
     }
