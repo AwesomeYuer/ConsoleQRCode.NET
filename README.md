@@ -15,6 +15,7 @@ using Microshaoft;
 using System.Text;
 using ZXing;
 
+
 Console.WriteLine("======");
 Console.WriteLine("======\b \b");
 Console.WriteLine("======");
@@ -26,7 +27,7 @@ var @value = string.Empty;
 Console.WriteLine
             (
                 @value = ConsoleQRCodeHelper
-                                .GenerateQRCodeConsoleText
+                                .GenerateQRCodeCharsText
                                     (
                                         s
                                         , new Dictionary<EncodeHintType, object>()
