@@ -83,22 +83,13 @@ public static class ConsoleQRCodeHelper
             {
                 var wideCharWidth = _wideCharWidth;
                 var b = bitMatrix[j, i];
-                if (b)
+                
+                while (wideCharWidth > 0)
                 {
-                    while (wideCharWidth > 0)
-                    {
-                        onBitMatrixProcess(b);
-                        wideCharWidth -= lightCharWidth;
-                    }
+                    onBitMatrixProcess(b);
+                    wideCharWidth -= b ? lightCharWidth : darkCharWidth;
                 }
-                else
-                {
-                    while (wideCharWidth > 0)
-                    {
-                        onBitMatrixProcess(b);
-                        wideCharWidth -= darkCharWidth;
-                    }
-                }
+                
                 onColumnProcessed(j);
             }
             onRowProcessed(i);
@@ -143,9 +134,9 @@ public static class ConsoleQRCodeHelper
                                 sb.Append(' ');
                             }
                         }
-                        , (bitMatrix) =>
+                        , (matrixBit) =>
                         {
-                            sb.Append(bitMatrix ? lightColorChar : darkColorChar);
+                            sb.Append(matrixBit ? lightColorChar : darkColorChar);
                         }
                         , (column) =>
                         {
@@ -203,15 +194,15 @@ public static class ConsoleQRCodeHelper
                         {
                             Console.CursorLeft = left;
                         }
-                        , (bitMatrix) =>
+                        , (matrixBit) =>
                         {
                             Console
                                 .BackgroundColor
                             = Console
                                 .ForegroundColor
-                            = bitMatrix ? lightColor : darkColor;
+                            = matrixBit ? lightColor : darkColor;
 
-                            @this.Write(bitMatrix ? lightColorChar : darkColorChar);
+                            @this.Write(matrixBit ? lightColorChar : darkColorChar);
                         }
                         , (column) =>
                         {
