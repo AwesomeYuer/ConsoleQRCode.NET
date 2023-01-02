@@ -1,7 +1,6 @@
-﻿using System.Collections;
-
-namespace Microshaoft
+﻿namespace Microshaoft
 {
+    using System.Collections;
     public static class ConsoleText
     {
         private struct CharLenSeg : IComparable<CharLenSeg>
@@ -34,7 +33,7 @@ namespace Microshaoft
         }
         private class CharLenSegs : IReadOnlyList<CharLenSeg>
         {
-            CharLenSeg[] collection;
+            readonly CharLenSeg[] collection;
             public CharLenSegs(CharLenSeg[] collection)
             {
                 this.collection = collection;
@@ -332,12 +331,23 @@ namespace Microshaoft
         {
             return AllCharLenSegs.BinarySearch(c).Length;
         }
-        public static int CalcStringLength(string str)
+        public static int CalcStringLength(string s)
         {
-            int total = 0;
-            foreach (char c in str)
-                total += CalcCharLength(c);
-            return total;
+            return
+                    s
+                        .Select
+                        (
+                            CalcCharLength
+                        )
+                        .Sum();
+
+
+            //int total = 0;
+            //foreach (char c in str)
+            //{
+            //    total += CalcCharLength(c);
+            //}
+            //return total;
         }
 
     }

@@ -12,50 +12,34 @@ public static class ConsoleQRCodeHelper
 {
     private const int _wideCharWidth = 2;
 
-    public static string GetQRCodeConsoleText
-                        (
-                            string data
 
-                            , IDictionary
-                                    <EncodeHintType, object>
-                                            qrEncodeHints
+    private static void QRCodeBitMatrixProcess
+                    (
+                        string data
 
-                            , int? outputPostionLeft                = null
-                            , int? outputPostionTop                 = null
+                        , IDictionary
+                                <EncodeHintType, object>
+                                        qrEncodeHints
+                        
+                        , Action<int> onOutputPostionTopProcess
+                        , Action<int> onOutputPostionLeftProcess
+                        , Action<bool> onBitMatrixProcess
+                        , Action<int> onColumnProcessed
+                        , Action<int> onRowProcessed
 
-                            , int widthInPixel                      = 10
-                            , int heightInPixel                     = 10
+                        , int? outputPostionLeft                        = null
+                        , int? outputPostionTop                         = null
 
-                            , char darkChar                         = '█'
-                            , char lightChar                        = ' '
-                        )
+                        , int widthInPixel                              = 10
+                        , int heightInPixel                             = 10
+
+                        , char darkColorChar                            = '█'
+                        , char lightColorChar                           = ' '
+                    )
     {
-        var sb = new StringBuilder();
-
         //Wide Char Detection
-        var darkCharWidth = ConsoleText.CalcCharLength(darkChar);
-        var lightCharWidth = ConsoleText.CalcCharLength(lightChar);
-
-        //lock (_locker)
-        //{
-        //    (int left, int top) = Console.GetCursorPosition();
-        //    Console.Write(darkChar);
-        //    darkCharWidth = Console.CursorLeft - left;
-        //    while (Console.CursorLeft != left)
-        //    {
-        //        Console.Write("\b \b");
-        //    }
-        //    Console.SetCursorPosition(left, top);
-
-        //    (left, top) = Console.GetCursorPosition();
-        //    Console.Write(lightChar);
-        //    lightCharWidth = Console.CursorLeft - left;
-        //    while (Console.CursorLeft != left)
-        //    {
-        //        Console.Write("\b \b");
-        //    }
-        //    Console.SetCursorPosition(left, top);
-        //}
+        var darkCharWidth = ConsoleText.CalcCharLength(darkColorChar);
+        var lightCharWidth = ConsoleText.CalcCharLength(lightColorChar);
 
         QRCodeWriter qrCodeWriter = new ();
         BitMatrix bitMatrix;
@@ -86,29 +70,24 @@ public static class ConsoleQRCodeHelper
 
         if (outputPostionTop is not null)
         {
-            for (var i = 0; i < outputPostionTop.Value; i++)
-            {
-                sb.AppendLine();
-            }
+            onOutputPostionTopProcess(outputPostionTop.Value);
         }
 
-        for (var i = 0; i < bitMatrix.Width; i++)
+        for (var i = 0; i < bitMatrix.Height; i++)
         {
             if (outputPostionLeft is not null)
             {
-                for (var ii = 0; ii < outputPostionLeft.Value; ii++)
-                {
-                    sb.Append(' ');
-                }
+                onOutputPostionLeftProcess(outputPostionLeft.Value);
             }
-            for (var j = 0; j < bitMatrix.Height; j++)
+            for (var j = 0; j < bitMatrix.Width; j++)
             {
                 var wideCharWidth = _wideCharWidth;
-                if (bitMatrix[i, j])
+                var b = bitMatrix[j, i];
+                if (b)
                 {
                     while (wideCharWidth > 0)
                     {
-                        sb.Append(lightChar);
+                        onBitMatrixProcess(b);
                         wideCharWidth -= lightCharWidth;
                     }
                 }
@@ -116,17 +95,78 @@ public static class ConsoleQRCodeHelper
                 {
                     while (wideCharWidth > 0)
                     {
-                        sb.Append(darkChar);
+                        onBitMatrixProcess(b);
                         wideCharWidth -= darkCharWidth;
                     }
                 }
+                onColumnProcessed(j);
             }
-            sb.AppendLine();
+            onRowProcessed(i);
         }
-        return sb.ToString();
     }
 
+    public static string GetQRCodeConsoleText
+                        (
+                            string data
 
+                            , IDictionary
+                                    <EncodeHintType, object>
+                                            qrEncodeHints
+
+                            , int? outputPostionLeft                    = null
+                            , int? outputPostionTop                     = null
+
+                            , int widthInPixel                          = 10
+                            , int heightInPixel                         = 10
+
+                            , char darkColorChar                        = '█'
+                            , char lightColorChar                       = ' '
+                        )
+    {
+        var sb = new StringBuilder();
+
+        QRCodeBitMatrixProcess
+                    (
+                        data
+                        , qrEncodeHints
+                        , (x) =>
+                        {
+                            for (var i = 0; i < x; i++)
+                            {
+                                sb.AppendLine();
+                            }
+                        }
+                        , (x) =>
+                        {
+                            for (var i = 0; i < x; i++)
+                            {
+                                sb.Append(' ');
+                            }
+                        }
+                        , (x) =>
+                        {
+                            sb.Append(x ? lightColorChar : darkColorChar);
+                        }
+                        , (x) =>
+                        {
+
+                        }
+                        , (x) =>
+                        {
+                            sb.AppendLine();
+                        }
+                        , outputPostionLeft
+                        , outputPostionTop
+
+                        , widthInPixel
+                        , heightInPixel
+
+                        , darkColorChar
+                        , lightColorChar
+
+                    );
+        return sb.ToString();
+    }
 
     public static void PrintQRCode
                             (
@@ -137,104 +177,59 @@ public static class ConsoleQRCodeHelper
                                         <EncodeHintType, object>
                                                 qrEncodeHints
 
-                                , int? outputPostionLeft            = null
-                                , int? outputPostionTop             = null
+                                , int? outputPostionLeft                = null
+                                , int? outputPostionTop                 = null
 
-                                , int widthInPixel                  = 10
-                                , int heightInPixel                 = 10
+                                , int widthInPixel                      = 10
+                                , int heightInPixel                     = 10
 
-                                , ConsoleColor darkColor            = ConsoleColor.Black
-                                , ConsoleColor lightColor           = ConsoleColor.White
+                                , ConsoleColor darkColor                = ConsoleColor.Black
+                                , ConsoleColor lightColor               = ConsoleColor.White
 
-                                , char placeholderChar              = '█'   //控制台二维码输出占位符参数缺省值为 : '█' ,二维码输出后,此时选择控制台屏幕文本,
-                                                                            //并拷贝到文本文件,再使用某些字体(如:Consolas)的文本编辑器(Windows notepad及默认字体不行)打开,仍然显示为二维码外观,
-                                                                            //使用其他字符作为二维码输出占位符,文本文件中仅显示该字符,相当于禁止拷贝二维码文本
+                                , char darkColorChar                    = '█'
+                                , char lightColorChar                   = ' '
+
                             )
     {
-        _ = @this;
+        QRCodeBitMatrixProcess
+                    (
+                        data
+                        , qrEncodeHints
+                        , (x) =>
+                        {
+                            Console.CursorTop = outputPostionTop!.Value;
+                        }
+                        , (x) =>
+                        {
+                            Console.CursorLeft = outputPostionLeft!.Value;
+                        }
+                        , (x) =>
+                        {
+                            Console
+                                .BackgroundColor
+                            = Console
+                                .ForegroundColor
+                            = x ? lightColor : darkColor;
+                            @this.Write(x ? lightColorChar : darkColorChar);
+                        }
+                        , (x) =>
+                        {
+                            Console.ResetColor();
+                        }
+                        , (x) =>
+                        {
+                            Console.Write('\n');
+                        }
+                        , outputPostionLeft
+                        , outputPostionTop
 
-        // Wide Char Detection
-        var charWidth = 0;
-        if (placeholderChar != '█')
-        {
-            //lock (_locker)
-            //{
-            //    (int left, int top) = Console.GetCursorPosition();
-            //    @this.Write(placeholderChar);
-            //    charWidth = Console.CursorLeft - left;
-            //    while (Console.CursorLeft != left)
-            //    {
-            //        @this.Write("\b \b");
-            //    }
-            //    Console.SetCursorPosition(left, top);
-            //}
-            charWidth = ConsoleText.CalcCharLength( placeholderChar );
-        }
+                        , widthInPixel
+                        , heightInPixel
 
-        QRCodeWriter qrCodeWriter = new ();
-        BitMatrix bitMatrix;
+                        , darkColorChar
+                        , lightColorChar
 
-        if (qrEncodeHints is null)
-        {
-            bitMatrix = qrCodeWriter
-                                .encode
-                                    (
-                                        data
-                                        , BarcodeFormat.QR_CODE
-                                        , widthInPixel
-                                        , heightInPixel
-                                    );
-        }
-        else
-        {
-            bitMatrix = qrCodeWriter
-                                .encode
-                                    (
-                                        data
-                                        , BarcodeFormat.QR_CODE
-                                        , widthInPixel
-                                        , heightInPixel
-                                        , qrEncodeHints
-                                    );
-        }
-
-        if (outputPostionTop is not null)
-        {
-            Console.CursorTop = outputPostionTop.Value;
-        }
-
-        for (var i = 0; i < bitMatrix.Width; i++)
-        {
-            if (outputPostionLeft is not null)
-            {
-                Console.CursorLeft = outputPostionLeft.Value;
-            }
-            for (var j = 0; j < bitMatrix.Height; j++)
-            {
-                Console
-                    .BackgroundColor
-                = Console
-                    .ForegroundColor
-                = bitMatrix[i, j] ? lightColor : darkColor;
-
-                if (placeholderChar == '█')
-                {
-                    @this.Write(bitMatrix[i, j] ? "  " : "██");
-                }
-                else
-                {
-                    var wideCharWidth = _wideCharWidth;
-                    while (wideCharWidth > 0)
-                    {
-                        @this.Write(placeholderChar);
-                        wideCharWidth -= charWidth;
-                    }
-                }
-                Console.ResetColor();
-            }
-            //Console.ResetColor();
-            @this.Write("\n");
-        }
+                    );
     }
 
     public static void PrintQRCodeLine
@@ -255,7 +250,9 @@ public static class ConsoleQRCodeHelper
                                 , ConsoleColor darkColor            = ConsoleColor.Black
                                 , ConsoleColor lightColor           = ConsoleColor.White
 
-                                , char placeholderChar              = '█'
+                                , char darkColorChar                = '█'
+                                , char lightColorChar               = ' '
+
                             )
     {
         PrintQRCode
@@ -275,7 +272,9 @@ public static class ConsoleQRCodeHelper
                     , darkColor
                     , lightColor
 
-                    , placeholderChar
+                    , darkColorChar
+                    , lightColorChar
+
                 );
         @this.WriteLine();
     }
@@ -285,23 +284,25 @@ public static class ConsoleQRCodeHelper
                                 this TextWriter @this
                                 , string data
 
-                                , int? outputPostionLeft            = null
-                                , int? outputPostionTop             = null
+                                , int? outputPostionLeft                = null
+                                , int? outputPostionTop                 = null
 
-                                , int marginInPixel                 = 1
+                                , int marginInPixel                     = 1
 
-                                , int widthInPixel                  = 10
-                                , int heightInPixel                 = 10
+                                , int widthInPixel                      = 10
+                                , int heightInPixel                     = 10
 
-                                , ConsoleColor darkColor            = ConsoleColor.Black
-                                , ConsoleColor lightColor           = ConsoleColor.White
+                                , ConsoleColor darkColor                = ConsoleColor.Black
+                                , ConsoleColor lightColor               = ConsoleColor.White
 
-                                , string characterSet               = nameof(Encoding.UTF8)
-                                , char placeholderChar              = '█'
+                                , char darkColorChar                    = '█'
+                                , char lightColorChar                   = ' '
+
+                                , string characterSet                   = nameof(Encoding.UTF8)
                             )
     {
 
-        Dictionary<EncodeHintType, object> qrEncodeHints = new ()
+        Dictionary<EncodeHintType, object> qrEncodeHints = new()
         {
               { EncodeHintType.CHARACTER_SET            , characterSet              }
             //, { EncodeHintType.ERROR_CORRECTION         , errorCorrectionLevel    }
@@ -332,7 +333,8 @@ public static class ConsoleQRCodeHelper
                 , darkColor
                 , lightColor
 
-                , placeholderChar
+                , darkColorChar
+                , lightColorChar
             );
     }
 
@@ -341,19 +343,21 @@ public static class ConsoleQRCodeHelper
                                 this TextWriter @this
                                 , string data
 
-                                , int? outputPostionLeft            = null
-                                , int? outputPostionTop             = null
+                                , int? outputPostionLeft                = null
+                                , int? outputPostionTop                 = null
 
-                                , int marginInPixel                 = 1
+                                , int marginInPixel                     = 1
 
-                                , int widthInPixel                  = 10
-                                , int heightInPixel                 = 10
+                                , int widthInPixel                      = 10
+                                , int heightInPixel                     = 10
 
-                                , ConsoleColor darkColor            = ConsoleColor.Black
-                                , ConsoleColor lightColor           = ConsoleColor.White
+                                , ConsoleColor darkColor                = ConsoleColor.Black
+                                , ConsoleColor lightColor               = ConsoleColor.White
 
-                                , string characterSet               = nameof(Encoding.UTF8)
-                                , char placeholderChar              = '█'
+                                , char darkColorChar                    = '█'
+                                , char lightColorChar                   = ' '
+
+                                , string characterSet                   = nameof(Encoding.UTF8)
                             )
     {
         PrintQRCode
@@ -372,10 +376,12 @@ public static class ConsoleQRCodeHelper
                     , darkColor
                     , lightColor
 
+                    , darkColorChar
+                    , lightColorChar
+
                     , characterSet
-                    , placeholderChar
                 );
         @this.WriteLine();
     }
-  
+
 }

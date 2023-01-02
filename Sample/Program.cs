@@ -53,6 +53,9 @@ System.Console.Out.PrintQRCodeLine
                 , ConsoleColor.White                            //darkColor                 :   控制台二维码输出深颜色
                 , ConsoleColor.Red                              //lightColor                :   控制台二维码输出浅颜色
 
+                , 'X'
+                , ' '
+
                 , nameof(Encoding.UTF8)                         //二维码字符集                :   utf-8 支持中文不乱码
                 //, '囍'                                        //控制台二维码输出占位符        :   同时支持宽或窄字符, 窄: !@# , 宽: ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
                 //, '█'                                         //控制台二维码输出占位符        :   缺省值为 :   '█' ,此时拷贝控制台屏幕到文本文件使用某些字体的文本编辑器(notepad及默认字体不行)仍然显示为二维码外观, 其他字符不支持 
@@ -63,7 +66,8 @@ Console.Out.PrintQRCodeLine
                     "https://www.cnblogs.com/stulzq/p/14282461.html?Thanks"     //待生成二维码原始数据
                     , 15                                                       //outputPostionLeft         :   控制台二维码输出横向位置
                     , 50                                                        //outputPostionTop          :   控制台二维码输出纵向位置
-                    , placeholderChar: '♂'                                      //控制台二维码输出占位符       :   同时支持宽或窄字符, 窄: !@# , 宽: ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
+                    , darkColorChar     :   '$'                                 //控制台二维码输出深色占位符       :   同时支持宽或窄字符, 窄: !@# , 宽: ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
+                    , lightColorChar    :   '$'
                 );
 
 Console.WriteLine();
@@ -114,7 +118,7 @@ Console.Out.PrintQRCodeLine
                 , 20                                                //outputPostionLeft     :   控制台二维码输出横向位置
                 , darkColor             : ConsoleColor.Yellow
                 , lightColor            : ConsoleColor.DarkBlue
-                , placeholderChar       : '$'                       //控制台二维码输出占位符   :   窄字符 $
+                , darkColorChar       : '$'                       //控制台二维码输出占位符   :   窄字符 $
             );
 s = $@"AwesomeYuer 于斯人也 한국어 ことに доступны ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨ 🌍💩";
 
