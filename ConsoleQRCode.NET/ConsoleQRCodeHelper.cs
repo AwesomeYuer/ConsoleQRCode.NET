@@ -14,7 +14,7 @@ public static class ConsoleQRCodeHelper
 
     private static void QRCodeBitMatrixProcess
                             (
-                                string data
+                                  string data
 
                                 , IDictionary
                                         <EncodeHintType, object>
@@ -50,7 +50,7 @@ public static class ConsoleQRCodeHelper
             bitMatrix = qrCodeWriter
                                 .encode
                                     (
-                                        data
+                                          data
                                         , BarcodeFormat.QR_CODE
                                         , widthInPixel
                                         , heightInPixel
@@ -61,7 +61,7 @@ public static class ConsoleQRCodeHelper
             bitMatrix = qrCodeWriter
                                 .encode
                                     (
-                                        data
+                                          data
                                         , BarcodeFormat.QR_CODE
                                         , widthInPixel
                                         , heightInPixel
@@ -122,7 +122,7 @@ public static class ConsoleQRCodeHelper
 
         QRCodeBitMatrixProcess
                     (
-                        data
+                          data
                         , qrEncodeHints
                         , (y) =>
                         {
@@ -166,7 +166,7 @@ public static class ConsoleQRCodeHelper
 
     public static string GenerateQRCodeCharsText
                             (
-                                string data
+                                  string data
 
                                 , int? outputPostionLeft                        = null
                                 , int? outputPostionTop                         = null
@@ -194,8 +194,8 @@ public static class ConsoleQRCodeHelper
             //, { EncodeHintType.DISABLE_ECI              , disableECI              }
             //, { EncodeHintType.GS1_FORMAT               , gs1Format               }
             , { EncodeHintType.MARGIN                   , marginInPixel             }
-            //, { EncodeHintType.widthInPixel                    , widthInPixel     }
-            //, { EncodeHintType.heightInPixel                   , heightInPixel    }
+            //, { EncodeHintType.widthInPixel             , widthInPixel            }
+            //, { EncodeHintType.heightInPixel            , heightInPixel           }
         };
 
         return
@@ -241,7 +241,7 @@ public static class ConsoleQRCodeHelper
     {
         QRCodeBitMatrixProcess
                     (
-                        data
+                          data
                         , qrEncodeHints
                         , (y) =>
                         {
@@ -283,7 +283,7 @@ public static class ConsoleQRCodeHelper
 
     public static void PrintQRCodeLine
                             (
-                                this TextWriter @this
+                                  this TextWriter @this
                                 , string data
 
                                 , IDictionary
@@ -306,7 +306,7 @@ public static class ConsoleQRCodeHelper
     {
         PrintQRCode
                 (
-                    @this
+                      @this
 
                     , data
 
@@ -330,7 +330,7 @@ public static class ConsoleQRCodeHelper
 
     public static void PrintQRCode
                             (
-                                this TextWriter @this
+                                  this TextWriter @this
                                 , string data
 
                                 , int? outputPostionLeft                = null
@@ -363,13 +363,13 @@ public static class ConsoleQRCodeHelper
             //, { EncodeHintType.DISABLE_ECI              , disableECI              }
             //, { EncodeHintType.GS1_FORMAT               , gs1Format               }
             , { EncodeHintType.MARGIN                   , marginInPixel             }
-            //, { EncodeHintType.widthInPixel                    , widthInPixel     }
-            //, { EncodeHintType.heightInPixel                   , heightInPixel    }
+            //, { EncodeHintType.widthInPixel             , widthInPixel            }
+            //, { EncodeHintType.heightInPixel            , heightInPixel           }
         };
 
         PrintQRCode
             (
-                @this
+                  @this
 
                 , data
 
@@ -391,7 +391,7 @@ public static class ConsoleQRCodeHelper
 
     public static void PrintQRCodeLine
                             (
-                                this TextWriter @this
+                                  this TextWriter @this
                                 , string data
 
                                 , int? outputPostionLeft                = null
@@ -415,7 +415,7 @@ public static class ConsoleQRCodeHelper
     {
         PrintQRCode
                 (
-                    @this
+                      @this
                     , data
 
                     , outputPostionLeft
