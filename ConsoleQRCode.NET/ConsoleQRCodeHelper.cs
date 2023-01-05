@@ -118,7 +118,7 @@ public static class ConsoleQRCodeHelper
                                 , char lightColorChar                       = ' '
                             )
     {
-        var sb = new StringBuilder();
+        StringBuilder sb = new ();
 
         QRCodeBitMatrixProcess
                     (
@@ -138,9 +138,9 @@ public static class ConsoleQRCodeHelper
                                 sb.Append(' ');
                             }
                         }
-                        , (matrixBit) =>
+                        , (bit) =>
                         {
-                            sb.Append(matrixBit ? lightColorChar : darkColorChar);
+                            sb.Append(bit ? lightColorChar : darkColorChar);
                         }
                         , (x) =>
                         {
@@ -251,15 +251,15 @@ public static class ConsoleQRCodeHelper
                         {
                             Console.CursorLeft = x;
                         }
-                        , (matrixBit) =>
+                        , (bit) =>
                         {
                             Console
                                 .BackgroundColor
                             = Console
                                 .ForegroundColor
-                            = matrixBit ? lightColor : darkColor;
+                            = bit ? lightColor : darkColor;
 
-                            @this.Write(matrixBit ? lightColorChar : darkColorChar);
+                            @this.Write(bit ? lightColorChar : darkColorChar);
                         }
                         , (x) =>
                         {
