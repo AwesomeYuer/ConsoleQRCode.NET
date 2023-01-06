@@ -155,11 +155,12 @@ public static class ConsoleQRCodeHelper
                     if (!bitMatrix[x,y])
                     {
                         sb.Append(' ');
+                        Console.Write(' ');
                     }
                     else
                     {
                         sb.Append('█');
-
+                        Console.Write('█');
                     }
                 }
                 else
