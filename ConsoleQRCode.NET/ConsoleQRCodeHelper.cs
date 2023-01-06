@@ -12,6 +12,12 @@ public static class ConsoleQRCodeHelper
 {
     private const int _wideCharWidth = 2;
 
+
+
+
+
+
+
     private static void QRCodeBitMatrixProcess
                             (
                                   string data
@@ -100,6 +106,97 @@ public static class ConsoleQRCodeHelper
         }
     }
 
+    public static string GenerateSmallQRCodeCharsText
+                            (
+                                string data
+
+                                , IDictionary
+                                        <EncodeHintType, object>
+                                                qrEncodeHints
+
+                                , int widthInPixel                      = 10
+                                , int heightInPixel                     = 10
+                            )
+    {
+        StringBuilder sb = new();
+        QRCodeWriter qrCodeWriter = new();
+        BitMatrix bitMatrix;
+
+        if (qrEncodeHints is null)
+        {
+            bitMatrix = qrCodeWriter
+                                .encode
+                                    (
+                                          data
+                                        , BarcodeFormat.QR_CODE
+                                        , widthInPixel
+                                        , heightInPixel
+                                    );
+        }
+        else
+        {
+            bitMatrix = qrCodeWriter
+                                .encode
+                                    (
+                                          data
+                                        , BarcodeFormat.QR_CODE
+                                        , widthInPixel
+                                        , heightInPixel
+                                        , qrEncodeHints
+                                    );
+        }
+        // if there is an odd number of rows, the last one needs special treatment
+        for (var y = 0; y < bitMatrix.Height - 1; y += 2)
+        {
+            for (var x = 0; x < bitMatrix.Width; x++)
+            {
+                if (bitMatrix[x, y] == bitMatrix[x,y+1])
+                {
+                    if (!bitMatrix[x,y])
+                    {
+                        sb.Append(' ');
+                    }
+                    else
+                    {
+                        sb.Append('█');
+
+                    }
+                }
+                else
+                {
+                    if (!bitMatrix[x, y])
+                    {
+                        sb.Append('▄');
+                    }
+                    else
+                    {
+                        sb.Append('▀');
+                    }
+                }
+            }
+            sb.AppendLine();
+        }
+
+        // special treatment for the last row if odd
+        if (bitMatrix.Height % 2 == 1)
+        {
+            var y = bitMatrix.Height - 1;
+            for (var x = 0; x < bitMatrix.Width; x++)
+            {
+                if (!bitMatrix[x, y])
+                {
+                    sb.Append(" ");
+                }
+                else
+                {
+                    sb.Append('▀');
+                }
+            }
+            sb.AppendLine();
+        }
+
+        return sb.ToString();
+    } 
     public static string GenerateQRCodeCharsText
                             (
                                 string data
