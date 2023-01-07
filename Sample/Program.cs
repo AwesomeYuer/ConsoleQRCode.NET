@@ -14,7 +14,7 @@ var @value = string.Empty;
 Console.WriteLine
             (
                 @value = ConsoleQRCodeHelper
-                                .GenerateQRCodeCharsText
+                                .GenerateSmallQRCodeCharsText
                                     (
                                         s
                                         , new Dictionary<EncodeHintType, object>()
@@ -70,7 +70,7 @@ Console.Out.PrintQRCodeLine
                 (
                     "https://www.cnblogs.com/stulzq/p/14282461.html?Thanks"     //待生成二维码原始数据
                     , 15                                                        //outputPostionLeft        :   二维码输出横向位置
-                    , 50                                                        //outputPostionTop         :   二维码输出纵向位置
+                    , 45                                                        //outputPostionTop         :   二维码输出纵向位置
                     , darkColorChar     :   '$'                                 //二维码输出深颜色占位符      :   同时支持宽或窄字符, 窄: !@# , 宽: ㊚㊛囍♀♂♂♀☿♁⚢⚣⚤⚥⚦⚧⚨
                     , lightColorChar    :   '$'
                 );
