@@ -12,12 +12,6 @@ public static class ConsoleQRCodeHelper
 {
     private const int _wideCharWidth = 2;
 
-
-
-
-
-
-
     private static void QRCodeBitMatrixProcess
                             (
                                   string data
